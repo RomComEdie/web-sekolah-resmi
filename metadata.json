@@ -1,0 +1,6 @@
+{
+  "name": "SMK Nusa Bangsa - Website Resmi & PPDB Online",
+  "description": "Website resmi sekolah menengah kejuruan dengan profil sekolah, daftar guru, jurusan RPL, AKL, TSM, daftar pembelajaran, dan pendaftaran PPDB / MPLS online.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
