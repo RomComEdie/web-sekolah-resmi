@@ -135,7 +135,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
               {/* Main School Featured Hero Image */}
               <div className="relative rounded-xl overflow-hidden aspect-[4/3] group">
                 <img 
-                  src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1000" 
+                  src="/assets/images/binus3.jpeg" 
                   alt="Siswa SMK Nusa Bangsa" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />

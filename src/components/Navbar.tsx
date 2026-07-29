@@ -200,7 +200,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, onOpe
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#2d5a3f] text-[#f7f2e7] text-xs sm:text-sm font-bold shadow-sm hover:bg-[#1b3828] hover:shadow transition-all border border-[#c5a059]/40 active:scale-95"
             >
               <FileText size={16} className="text-[#c5a059]" />
-              <span>Daftar PPDB/MPLS</span>
+              <span>Daftar PPDB</span>
             </button>
           </div>
 
@@ -264,7 +264,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, onOpe
                 className="w-full py-3 rounded-lg bg-[#2d5a3f] text-[#f7f2e7] font-bold text-sm flex items-center justify-center gap-2 border border-[#c5a059]/40 shadow-sm"
               >
                 <FileText size={18} className="text-[#c5a059]" />
-                <span>Daftar PPDB/MPLS</span>
+                <span>Daftar PPDB</span>
               </button>
             </div>
           </div>

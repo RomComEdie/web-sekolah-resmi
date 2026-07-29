@@ -139,13 +139,13 @@ export const MAJORS_DATA: MajorInfo[] = [
 export const TEACHERS_DATA: Teacher[] = [
   {
     id: 't1',
-    name: 'Drs. H. Ahmad Fauzi, M.Pd.',
+    name: 'Pak Sugito S.Pd',
     role: 'Kepala Sekolah',
     department: 'Pimpinan',
     subject: 'Manajemen Pendidikan & Kepemimpinan',
     education: 'S2 Manajemen Pendidikan - Universitas Pendidikan Indonesia',
     nip: '19680312 199403 1 002',
-    photoUrl: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400',
+    photoUrl: '/assets/images/binus1.jpeg',
     bio: 'Berpengalaman lebih dari 25 tahun dalam memajukan kualitas vokasi sekolah kejuruan, mendorong kolaborasi industri nasional.',
     quote: 'Pendidikan vokasi adalah kunci mencetak generasi terampil yang langsung berdampak bagi bangsa.'
   },
