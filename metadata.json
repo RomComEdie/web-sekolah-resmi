@@ -1,0 +1,6 @@
+{
+  "name": "SMK Prestasi Nusantara - Landing Page & PPDB",
+  "description": "Website sekolah modern dengan tema Light Neumorphism, profil kejuruan (RPL, AKL, TSM), profil guru, formulir PPDB dengan validasi NISN unik, cetak bukti PDF, panel CRUD admin, serta ekspor file PHP Native & SQL.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

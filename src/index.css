@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-color: #e5ece8;
+    --shadow-dark: #b8c7be;
+    --shadow-light: #ffffff;
+    --primary-green: #386652;
+    --primary-hover: #284c3c;
+    --accent-gold: #d4af37;
+    --accent-gold-dark: #b8860b;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: #1e293b;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+}
+
+/* Light Neumorphism Custom Utilities */
+.neu-flat {
+  background: #e5ece8;
+  box-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
+  border-radius: 20px;
+}
+
+.neu-flat-sm {
+  background: #e5ece8;
+  box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
+  border-radius: 14px;
+}
+
+.neu-card {
+  background: #e5ece8;
+  box-shadow: 10px 10px 20px #b8c7be, -10px -10px 20px #ffffff;
+  border-radius: 24px;
+  transition: all 0.3s ease;
+}
+
+.neu-card:hover {
+  box-shadow: 14px 14px 28px #abbba3, -14px -14px 28px #ffffff;
+  transform: translateY(-4px);
+}
+
+.neu-pressed {
+  background: #e5ece8;
+  box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+  border-radius: 16px;
+}
+
+.neu-input {
+  background: #e5ece8;
+  box-shadow: inset 4px 4px 8px #b8c7be, inset -4px -4px 8px #ffffff;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: all 0.2s ease-in-out;
+}
+
+.neu-input:focus {
+  outline: none;
+  box-shadow: inset 5px 5px 10px #adbca3, inset -5px -5px 10px #ffffff, 0 0 0 2px rgba(56, 102, 82, 0.4);
+}
+
+.neu-btn {
+  background: linear-gradient(145deg, #f3f8f5, #d2e0d8);
+  box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+  border-radius: 16px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.neu-btn:hover {
+  background: linear-gradient(145deg, #ffffff, #c7d8ce);
+  box-shadow: 8px 8px 16px #abbba3, -8px -8px 16px #ffffff;
+}
+
+.neu-btn:active {
+  box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+  transform: translateY(1px);
+}
+
+.neu-btn-primary {
+  background: linear-gradient(145deg, #386652, #234737);
+  color: #ffffff;
+  box-shadow: 6px 6px 14px rgba(45, 90, 70, 0.35), -6px -6px 14px #ffffff;
+  border-radius: 16px;
+  transition: all 0.2s ease;
+}
+
+.neu-btn-primary:hover {
+  background: linear-gradient(145deg, #427861, #1d3a2d);
+  box-shadow: 8px 8px 18px rgba(45, 90, 70, 0.45), -8px -8px 18px #ffffff;
+}
+
+.neu-btn-primary:active {
+  box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.3), inset -3px -3px 6px rgba(255, 255, 255, 0.2);
+}
+
+.neu-btn-gold {
+  background: linear-gradient(145deg, #e5be38, #b8860b);
+  color: #1a2e24;
+  box-shadow: 6px 6px 14px rgba(184, 134, 11, 0.35), -6px -6px 14px #ffffff;
+  border-radius: 16px;
+  transition: all 0.2s ease;
+}
+
+.neu-btn-gold:hover {
+  background: linear-gradient(145deg, #f0c946, #a17508);
+  box-shadow: 8px 8px 18px rgba(184, 134, 11, 0.45), -8px -8px 18px #ffffff;
+}
+
+.neu-badge {
+  background: #e5ece8;
+  box-shadow: 3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light);
+  border-radius: 9999px;
+}
+
+.neu-circle {
+  background: #e5ece8;
+  box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+  border-radius: 50%;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #e5ece8;
+}
+::-webkit-scrollbar-thumb {
+  background: #a8b8ad;
+  border-radius: 5px;
+  border: 2px solid #e5ece8;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #889a8e;
+}
+
+/* Parallax subtle floating keyframe */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(3deg);
+  }
+}
+
+@keyframes floatReverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(15px) rotate(-3deg);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 8s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 10s ease-in-out infinite;
+}
