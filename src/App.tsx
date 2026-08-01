@@ -8,11 +8,13 @@ import { TeacherProfiles } from './components/TeacherProfiles';
 import { RegistrationFormComponent } from './components/RegistrationForm';
 import { Footer } from './components/Footer';
 import { AdminCrudModal } from './components/AdminCrudModal';
+import { PhpBackendModal } from './components/PhpBackendModal';
 import { RegistrationData } from './types';
 
 export default function App() {
   const [registrations, setRegistrations] = useState<RegistrationData[]>([]);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
+  const [isPhpModalOpen, setIsPhpModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
   // Fetch registered students list from REST API
@@ -89,6 +91,7 @@ export default function App() {
 
       {/* Main Header Bar */}
       <Header
+        onOpenPhpModal={() => setIsPhpModalOpen(true)}
         registrationCount={registrations.length}
       />
 
@@ -105,7 +108,9 @@ export default function App() {
       </main>
 
       {/* Footer Section */}
-      <Footer />
+      <Footer
+        onOpenPhpModal={() => setIsPhpModalOpen(true)}
+      />
 
       {/* Modals */}
       <AdminCrudModal
@@ -116,6 +121,11 @@ export default function App() {
         onDelete={handleDeleteRegistration}
         onUpdate={handleUpdateRegistration}
         onCreate={handleCreateRegistration}
+      />
+
+      <PhpBackendModal
+        isOpen={isPhpModalOpen}
+        onClose={() => setIsPhpModalOpen(false)}
       />
     </div>
   );

@@ -1,8 +1,12 @@
 import React from 'react';
-import { GraduationCap, Phone, Mail, MapPin, Globe } from 'lucide-react';
+import { GraduationCap, Phone, Mail, MapPin, Globe, FileCode } from 'lucide-react';
 import { SCHOOL_INFO } from '../data/schoolData';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onOpenPhpModal?: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onOpenPhpModal }) => {
   return (
     <footer className="relative z-10 bg-[#dce6e0] border-t border-white/60 pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -28,6 +32,18 @@ export const Footer: React.FC = () => {
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-md font-medium">
               {SCHOOL_INFO.slogan}. Berkomitmen melahirkan tenaga kerja terampil, profesional, dan siap menghadapi era revolusi industri 4.0.
             </p>
+
+            {onOpenPhpModal && (
+              <div className="pt-2">
+                <button
+                  onClick={onOpenPhpModal}
+                  className="neu-btn px-3.5 py-2 text-xs font-semibold text-slate-700 hover:text-[#386652] flex items-center gap-2"
+                >
+                  <FileCode className="w-4 h-4 text-[#386652]" />
+                  <span>Konfigurasi Backend PHP Native & MySQL</span>
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Col 2: Nav Links */}

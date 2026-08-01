@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { GraduationCap, ShieldCheck, Menu, X } from 'lucide-react';
+import { GraduationCap, ShieldCheck, Menu, X, FileCode } from 'lucide-react';
 import { SCHOOL_INFO } from '../data/schoolData';
 
 interface HeaderProps {
+  onOpenPhpModal?: () => void;
   registrationCount?: number;
 }
 
-export const Header: React.FC<HeaderProps> = () => {
+export const Header: React.FC<HeaderProps> = ({ onOpenPhpModal }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
@@ -51,6 +52,17 @@ export const Header: React.FC<HeaderProps> = () => {
 
           {/* Desktop Action Buttons */}
           <div className="hidden lg:flex items-center gap-3">
+            {onOpenPhpModal && (
+              <button
+                onClick={onOpenPhpModal}
+                className="neu-btn px-3.5 py-2 text-xs font-semibold text-slate-700 hover:text-[#386652] flex items-center gap-1.5"
+                title="Lihat Konfigurasi Backend PHP Native & MySQL"
+              >
+                <FileCode className="w-4 h-4 text-[#386652]" />
+                <span>Backend PHP & MySQL</span>
+              </button>
+            )}
+
             <a
               href="#pendaftaran"
               className="neu-btn-primary px-5 py-2 text-xs font-bold tracking-wide flex items-center gap-1.5 shadow-md"
@@ -62,6 +74,15 @@ export const Header: React.FC<HeaderProps> = () => {
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center gap-2">
+            {onOpenPhpModal && (
+              <button
+                onClick={onOpenPhpModal}
+                className="neu-btn p-2 text-slate-700"
+                title="Backend PHP Native"
+              >
+                <FileCode className="w-5 h-5 text-[#386652]" />
+              </button>
+            )}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="neu-btn p-2.5 text-slate-700"
@@ -89,6 +110,19 @@ export const Header: React.FC<HeaderProps> = () => {
             </nav>
 
             <div className="pt-2 border-t border-slate-300/40 flex flex-col gap-2">
+              {onOpenPhpModal && (
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenPhpModal();
+                  }}
+                  className="neu-btn w-full py-2 px-4 text-xs font-semibold text-slate-700 flex items-center justify-center gap-2"
+                >
+                  <FileCode className="w-4 h-4 text-[#386652]" />
+                  <span>Konfigurasi PHP Native & MySQL</span>
+                </button>
+              )}
+
               <a
                 href="#pendaftaran"
                 onClick={() => setMobileMenuOpen(false)}

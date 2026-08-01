@@ -198,62 +198,46 @@ app.delete('/api/pendaftaran/:id', (req, res) => {
   return res.json({ success: true, message: 'Data pendaftaran berhasil dihapus.' });
 });
 
+// GET list and content of PHP Native backend files
+app.get('/api/export/php-files', (req, res) => {
+  const phpDir = path.join(process.cwd(), 'php_backend');
+  if (!fs.existsSync(phpDir)) {
+    return res.status(404).json({ success: false, message: 'Folder php_backend tidak ditemukan.' });
+  }
+
+  const files = [
+    'config.php',
+    'koneksi.php',
+    'database.sql',
+    'api_pendaftaran.php',
+    'api_check_nisn.php',
+    'api_admin.php',
+    'index.php',
+    'PETUNJUK_DATABASE.md'
+  ];
+
+  const result = files.map(filename => {
+    const filePath = path.join(phpDir, filename);
+    const content = fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf8') : '';
+    return {
+      filename,
+      content,
+      language: filename.endsWith('.sql') ? 'sql' : (filename.endsWith('.md') ? 'markdown' : 'php')
+    };
+  });
+
+  res.json({ success: true, data: result });
+});
+
 // GET database.sql file content
 app.get('/api/export/sql', (req, res) => {
-  const sqlScript = `-- ========================================================
--- DATABASE SCHEMA & SEED DATA FOR SMK PRESTASI NUSANTARA
--- System: Penerimaan Peserta Didik Baru (PPDB)
--- File: database_smk.sql
--- ========================================================
-
-CREATE DATABASE IF NOT EXISTS \`db_smk_prestasi\` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE \`db_smk_prestasi\`;
-
--- --------------------------------------------------------
--- Table structure for \`pendaftaran_ppdb\`
--- --------------------------------------------------------
-
-DROP TABLE IF EXISTS \`pendaftaran_ppdb\`;
-
-CREATE TABLE \`pendaftaran_ppdb\` (
-  \`id\` INT(11) NOT NULL AUTO_INCREMENT,
-  \`kode_pendaftaran\` VARCHAR(30) NOT NULL UNIQUE,
-  \`nisn\` VARCHAR(10) NOT NULL,
-  \`nama_lengkap\` VARCHAR(100) NOT NULL,
-  \`jenis_kelamin\` ENUM('Laki-Laki', 'Perempuan') NOT NULL,
-  \`tempat_lahir\` VARCHAR(50) NOT NULL,
-  \`tanggal_lahir\` DATE NOT NULL,
-  \`no_hp\` VARCHAR(15) NOT NULL,
-  \`alamat\` TEXT NOT NULL,
-  \`jurusan\` ENUM('RPL', 'AKL', 'TSM') NOT NULL,
-  \`asal_sekolah\` VARCHAR(100) NOT NULL,
-  \`tahun_lulus\` VARCHAR(4) NOT NULL,
-  \`nama_orang_tua\` VARCHAR(100) NOT NULL,
-  \`no_hp_orang_tua\` VARCHAR(15) NOT NULL,
-  \`pekerjaan_orang_tua\` VARCHAR(50) NOT NULL,
-  \`status_pendaftaran\` ENUM('Terverifikasi', 'Menunggu', 'Ditolak') DEFAULT 'Terverifikasi',
-  \`created_at\` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (\`id\`),
-  UNIQUE KEY \`unique_nisn\` (\`nisn\`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
--- Dumping data for table \`pendaftaran_ppdb\`
--- --------------------------------------------------------
-
-INSERT INTO \`pendaftaran_ppdb\` (
-  \`kode_pendaftaran\`, \`nisn\`, \`nama_lengkap\`, \`jenis_kelamin\`,
-  \`tempat_lahir\`, \`tanggal_lahir\`, \`no_hp\`, \`alamat\`,
-  \`jurusan\`, \`asal_sekolah\`, \`tahun_lulus\`, \`nama_orang_tua\`,
-  \`no_hp_orang_tua\`, \`pekerjaan_orang_tua\`
-) VALUES
-('REG-2026-RPL-001', '0051234567', 'Ahmad Fauzi', 'Laki-Laki', 'Jakarta', '2009-05-14', '081234567890', 'Jl. Merdeka No. 12, Jakarta Selatan', 'RPL', 'SMP Negeri 1 Jakarta', '2026', 'Budi Santoso', '081987654321', 'Wiraswasta'),
-('REG-2026-AKL-002', '0059876543', 'Siti Nurhaliza', 'Perempuan', 'Bandung', '2009-08-22', '082345678901', 'Jl. Asia Afrika No. 45, Bandung', 'AKL', 'MTs Negeri 2 Bandung', '2026', 'Rahmat Hidayat', '082987654321', 'PNS');
-`;
-
-  res.setHeader('Content-Type', 'text/plain');
-  res.setHeader('Content-Disposition', 'attachment; filename="database_smk.sql"');
-  res.send(sqlScript);
+  const sqlFilePath = path.join(process.cwd(), 'php_backend', 'database.sql');
+  if (fs.existsSync(sqlFilePath)) {
+    res.setHeader('Content-Type', 'text/plain');
+    res.setHeader('Content-Disposition', 'attachment; filename="database_smk.sql"');
+    return res.send(fs.readFileSync(sqlFilePath, 'utf8'));
+  }
+  return res.status(404).send('File database.sql tidak ditemukan.');
 });
 
 async function startServer() {
