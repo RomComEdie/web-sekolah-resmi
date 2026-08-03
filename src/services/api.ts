@@ -6,8 +6,7 @@
 import { RegistrationData, Teacher, MajorInfo, LearningSubject, Extracurricular } from '../types';
 
 // Default URL Backend PHP Native (Dapat disesuaikan via variabel lingkungan atau config)
-const PHP_BACKEND_URL = (import.meta as any).env?.VITE_PHP_BACKEND_URL || 'http://localhost/smk-nusa-bangsa/backend-php/api';
-
+const PHP_BACKEND_URL = (import.meta as any).env?.VITE_PHP_BACKEND_URL || '/api';
 /**
  * Submit Pendaftaran Baru PPDB / MPLS
  */

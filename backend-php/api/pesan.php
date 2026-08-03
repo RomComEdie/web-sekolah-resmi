@@ -1,10 +1,47 @@
 <?php
+ob_start();
 /**
  * API Pesan Kontak / Form Pertanyaan (Native PHP + MySQL PDO)
  * Endpoints: GET, POST, PUT, DELETE
  */
 
+// 1. SET HEADER CORS DI PALIING ATAS (CUKUP SEKALI)
+header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
+// 2. TANGANI PREFLIGHT REQUEST (OPTIONS)
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
+// 3. KONEKSI DATABASE
 require_once __DIR__ . '/../config/database.php';
+
+// --- HELPER FUNCTIONS (WAJIB ADA AGAR TIDAK FATAL ERROR) ---
+
+function getJsonInput() {
+    $input = json_decode(file_get_contents("php://input"), true);
+    return is_array($input) ? $input : $_POST;
+}
+
+function sendJsonResponse($statusCode, $message, $data = null, $extra = []) {
+    http_response_code($statusCode);
+    $response = array_merge([
+        'status' => $statusCode >= 200 && $statusCode < 300 ? 'success' : 'error',
+        'code' => $statusCode,
+        'message' => $message,
+        'data' => $data
+    ], $extra);
+    
+    echo json_encode($response);
+    exit(); // Hentikan eksekusi setelah kirim response
+}
+
+// --- MAIN ROUTER ---
 
 $database = new Database();
 $db = $database->getConnection();
@@ -28,6 +65,8 @@ switch ($method) {
         sendJsonResponse(405, "Method $method Tidak Diizinkan");
         break;
 }
+
+// --- HANDLER FUNCTIONS ---
 
 function handleGetPesan($db) {
     $id = isset($_GET['id']) ? intval($_GET['id']) : null;

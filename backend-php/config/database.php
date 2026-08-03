@@ -4,7 +4,7 @@
  * SMK Nusa Bangsa Backend API
  */
 
-require_once __DIR__ . '/cors.php';
+require_once __DIR__ . '/../cors.php';
 
 class Database {
     // Ubah sesuai konfigurasi server MySQL Anda (XAMPP / Laragon / Cpanel / VPS)
