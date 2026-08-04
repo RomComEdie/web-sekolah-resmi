@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    
+    /* Low saturated green palette */
+    --color-green-dark: #1b3828;      /* Deep Muted Forest */
+    --color-green-primary: #2d5a3f;   /* Low Saturate Emerald */
+    --color-green-medium: #3e7052;    /* Sage Accent */
+    --color-green-light: #e8f0eb;     /* Soft Muted Mint */
+    --color-green-subtle: #f2f7f4;    /* Subtle Tint */
+
+    /* Low saturated gold palette */
+    --color-gold-primary: #c5a059;    /* Low Sat Muted Gold */
+    --color-gold-hover: #b38e47;      /* Darker Gold Accent */
+    --color-gold-light: #f7f2e7;      /* Soft Creamy Gold */
+    --color-gold-subtle: #fbf8f0;     /* Gold Tint Background */
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: #2c3531;
+    background-color: #fafbf9;
+  }
+
+  h1, h2, .font-serif-title {
+    font-family: var(--font-sans);
+  }
+}
+
+/* Custom Utilities for low saturate green & gold themes */
+.bg-green-dark { background-color: #1b3828; }
+.bg-green-primary { background-color: #2d5a3f; }
+.bg-green-medium { background-color: #3e7052; }
+.bg-green-light { background-color: #e8f0eb; }
+.bg-green-subtle { background-color: #f2f7f4; }
+
+.text-green-dark { color: #1b3828; }
+.text-green-primary { color: #2d5a3f; }
+.text-green-medium { color: #3e7052; }
+
+.border-green-primary { border-color: #2d5a3f; }
+.border-green-subtle { border-color: #dbe5de; }
+
+.bg-gold-primary { background-color: #c5a059; }
+.bg-gold-light { background-color: #f7f2e7; }
+.text-gold-primary { color: #b38e47; }
+.border-gold-primary { border-color: #c5a059; }
+
+/* Subtle Parallax Floating animations */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes floatReverse {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(8px); }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 7s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f2;
+}
+::-webkit-scrollbar-thumb {
+  background: #a3bead;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2d5a3f;
+}
+
