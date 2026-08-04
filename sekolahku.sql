@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 13, 2020 at 12:55 PM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Host: localhost
+-- Generation Time: Aug 04, 2026 at 10:10 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -35,7 +34,7 @@ CREATE TABLE `tbl_artikel` (
   `tanggal` date DEFAULT NULL,
   `foto` varchar(100) DEFAULT NULL,
   `id_kategori` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_artikel`
@@ -58,7 +57,7 @@ CREATE TABLE `tbl_bukutamu` (
   `nama` varchar(80) DEFAULT NULL,
   `email` varchar(90) DEFAULT NULL,
   `isi` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_bukutamu`
@@ -77,7 +76,7 @@ CREATE TABLE `tbl_ekskul` (
   `id` int(11) NOT NULL,
   `nama_ekskul` varchar(50) DEFAULT NULL,
   `pembina` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_ekskul`
@@ -104,7 +103,7 @@ CREATE TABLE `tbl_guru` (
   `mata_pelajaran` varchar(50) DEFAULT NULL,
   `alamat` varchar(100) DEFAULT NULL,
   `foto` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_guru`
@@ -124,7 +123,7 @@ CREATE TABLE `tbl_jurusan` (
   `id` int(11) NOT NULL,
   `nama_jurusan` varchar(30) DEFAULT NULL,
   `ka_prodi` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_jurusan`
@@ -143,7 +142,7 @@ INSERT INTO `tbl_jurusan` (`id`, `nama_jurusan`, `ka_prodi`) VALUES
 CREATE TABLE `tbl_kategori_artikel` (
   `id` int(11) NOT NULL,
   `nama_kategori` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_kategori_artikel`
@@ -165,7 +164,7 @@ CREATE TABLE `tbl_pengguna` (
   `username` varchar(20) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `foto` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_pengguna`
@@ -191,7 +190,7 @@ CREATE TABLE `tbl_siswa` (
   `no_hp` varchar(12) DEFAULT NULL,
   `foto` varchar(120) DEFAULT NULL,
   `id_jurusan` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_siswa`
@@ -211,7 +210,7 @@ INSERT INTO `tbl_siswa` (`id`, `nama`, `nis`, `jenis_kelamin`, `tempat_lahir`, `
 CREATE TABLE `tbl_tentang_website` (
   `id` int(11) NOT NULL,
   `tentang_website` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_tentang_website`
@@ -229,7 +228,7 @@ INSERT INTO `tbl_tentang_website` (`id`, `tentang_website`) VALUES
 CREATE TABLE `tbl_visi_misi` (
   `id` int(11) NOT NULL,
   `visi_misi` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_visi_misi`
