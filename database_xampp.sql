@@ -3,7 +3,7 @@
 -- SIM / SIAKAD SMK BHINNEKA NUSANTARA
 -- ============================================================
 
-CREATE DATABASE IF NOT EXISTS `smk_bhinneka` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE IF NOT EXISTS `smk_bhinneka_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `smk_bhinneka`;
 
 -- 1. TABEL PENDAFTAR PPDB
