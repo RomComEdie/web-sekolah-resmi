@@ -1,5 +1,5 @@
 import { Teacher, MajorInfo, LearningSubject, Extracurricular, SchoolFacility } from '../types';
-import schoolLogoAsset from '../assets/school_logo.jpg';
+import schoolLogoAsset from '../assets/school_logo.png';
 
 export const SCHOOL_INFO = {
   name: 'SMK Bhinneka Nusantara',
@@ -21,10 +21,10 @@ export const SCHOOL_INFO = {
     'Mengembangkan jiwa kewirausahaan (entrepreneurship) berbasis digital dan keterampilan praktis.'
   ],
   stats: {
-    studentsCount: 1280,
-    teachersCount: 54,
+    studentsCount: 100,
+    teachersCount: 10,
     majorCount: 3,
-    partnerCompanies: 48,
+    partnerCompanies: 10,
     employmentRate: '96.4%'
   },
   mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.9603251189783!2d106.93140377356049!3d-6.268948393719738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698d701018c34d%3A0x25cf57d09e074361!2sSMK%20BINUS!5e0!3m2!1sen!2sid!4v1785116196230!5m2!1sen!2sid'
