@@ -98,7 +98,7 @@
   }
   .logo{display:flex;align-items:center;gap:12px;}
   .logo-mark{
-    width:46px;height:46px;border-radius:12px;
+    width:40px;height:40px;border-radius:12px;
     background:linear-gradient(155deg,var(--forest-light),var(--forest-deep));
     display:flex;align-items:center;justify-content:center;
     color:var(--gold-light);font-family:'Fraunces',serif;font-weight:700;font-size:20px;
@@ -155,6 +155,7 @@
   .hero-grid{
     display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;
   }
+ 
   .hero-badge{
     display:inline-flex;align-items:center;gap:12px;
     background:rgba(255,255,255,0.06);
@@ -223,15 +224,16 @@
     margin-top:-46px;position:relative;z-index:2;
   }
   .stats .wrap{
-    background:var(--forest);
+    background: rgb(240, 248, 255 5.0);
+    backdrop-filter: blur(30px);
     border-radius:20px;border:1px solid var(--line);
     display:grid;grid-template-columns:repeat(4,1fr);
     box-shadow:var(--shadow-lg);
   }
   .stat-item{padding:34px 28px;text-align:left;border-right:1px solid var(--line);}
   .stat-item:last-child{border-right:none;}
-  .stat-item .num{font-family:'Fraunces',serif;font-size:clamp(28px,3vw,40px);font-weight:600;color:var(--gold-light);}
-  .stat-item .label{font-size:13px;color:var(--sage);margin-top:6px;font-weight:500;}
+  .stat-item .num{font-family:'Fraunces',serif;font-size:clamp(28px,3vw,40px);font-weight:600;color: black;}
+  .stat-item .label{font-size:13px;color: black;margin-top:6px;font-weight:500;}
 
   /* ===== SECTION SHARED ===== */
   section{padding:120px 0 0;}
@@ -415,9 +417,14 @@
   }
   @media (max-width:640px){
     .wrap{padding:0 20px;}
+    
     .topbar .wrap{padding:8px 20px;justify-content:center;}
     .topbar-left{justify-content:center;width:100%;}
-    .nav-inner{padding:14px 20px;}
+    .nav-inner{padding:15px 20px;}
+  
+    .logo-mark{
+      margin-left: 15px;
+    }
     .logo-text .tag{display:none;}
     section{padding-top:80px;}
     .hero{padding:40px 0 60px;}
@@ -434,4 +441,235 @@
     .kontak-info{padding:36px 26px;}
     .footer-grid{grid-template-columns:1fr;}
     .vm-card{flex-direction:column;gap:10px;}
+    .topbar-left{
+      display: none;
+    }
   }
+
+
+  /* ==========================================
+   PPDB SECTION STYLES (PURE CSS)
+   ========================================== */
+.ppdb-section {
+  padding: 60px 0;
+  background-color: #f8fafc;
+}
+
+/* Alert Notification */
+.alert-ppdb {
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.alert-success {
+  background-color: #d1fae5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.alert-danger {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+/* Grid Layout */
+.ppdb-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 30px;
+}
+
+/* Cards */
+.ppdb-card-main {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 35px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.ppdb-card-sidebar {
+  background: #12241c; /* Warna Hijau Gelap Identitas Sekolah */
+  border-radius: 16px;
+  padding: 25px;
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(18, 36, 28, 0.2);
+}
+
+.ppdb-sidebar-title {
+  margin-top: 0;
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem;
+}
+
+.ppdb-sidebar-desc {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.ppdb-card-info {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 25px;
+  margin-top: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.ppdb-info-title {
+  margin-top: 0;
+  color: #12241c;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.ppdb-info-list {
+  font-size: 0.82rem;
+  padding-left: 18px;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Section Divider Subtitle */
+.section-subtitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #12241c;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 8px;
+}
+
+.section-subtitle:first-of-type {
+  margin-top: 0;
+}
+
+/* Form Controls */
+.form-group-ppdb {
+  margin-bottom: 16px;
+}
+
+.form-group-ppdb label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 6px;
+}
+
+.form-control-ppdb {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: #f8fafc;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s ease;
+}
+
+.form-control-ppdb:focus {
+  outline: none;
+  border-color: #12241c;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(18, 36, 28, 0.1);
+}
+
+/* Form Layout Grid System */
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.form-row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+/* Buttons */
+/* ==========================================
+   NEUMORPHIC BUTTON STYLE (#234f38)
+   ========================================== */
+.btn-ppdb-gold {
+  /* Warna Dasar Utama #234f38 dengan sedikit gradien halus */
+  background: linear-gradient(145deg, #25553c, #204732); 
+  color: #ffffff;
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+
+  /* EFEK NEUMORPHISM (Bayangan Timbul Soft 3D) */
+  box-shadow: 
+    6px 6px 14px rgba(0, 0, 0, 0.28),        /* Shadow Gelap (Bawah-Kanan) */
+    -3px -3px 8px rgba(255, 255, 255, 0.12); /* Highlight Terang (Atas-Kiri) */
+  
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efek Hover (Tombol Sedikit Naik & Menonjol) */
+.btn-ppdb-gold:hover {
+  background: linear-gradient(145deg, #275b40, #1e452f);
+  transform: translateY(-2px);
+  box-shadow: 
+    8px 8px 18px rgba(0, 0, 0, 0.35),
+    -4px -4px 10px rgba(255, 255, 255, 0.18);
+}
+
+/* Efek Active (Saat Diklik - Tombol Ambles / Inset Shadow) */
+.btn-ppdb-gold:active {
+  transform: translateY(1px);
+  background: #204732;
+  box-shadow: 
+    inset 3px 3px 6px rgba(0, 0, 0, 0.45),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.1);
+}
+
+.btn-submit-form {
+  margin-top: 20px;
+}
+
+/* Dynamic Result Box */
+.ppdb-result-box {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  font-size: 0.85rem;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+}
+
+.ppdb-result-box p {
+  margin: 4px 0;
+}
+
+/* Responsive Breakdown */
+@media (max-width: 900px) {
+  .ppdb-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-row-2,
+  .form-row-3 {
+    grid-template-columns: 1fr;
+  }
+}
+

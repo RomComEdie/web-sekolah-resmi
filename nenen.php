@@ -1,63 +1,19 @@
 <?php 
-require_once 'config/koneksi.php';
-require_once 'config/koneksi.php'; 
+session_start();
 
-$msg_ppdb = '';
-$file_pdf_path = 'assets/pdf/wedding-dress-mari-v0-otfqzrgv8c9b1.pdf'; // Pastikan nama file PDF di folder assets sesuai!
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-$get_status = mysqli_query($koneksi, "SELECT nilai FROM pengaturans WHERE nama_pengaturan = 'status_ppdb'");
-$res_status = mysqli_fetch_assoc($get_status);
-$is_ppdb_open = ($res_status['nilai'] ?? '1') == '1';
+require_once 'backend/koneksi.php';
 
-// 1. PROSES FORM PENDAFTARAN UTAMA
-if (isset($_POST['submit_ppdb'])) {
-    $nama         = trim($_POST['nama_lengkap']);
-    $nisn         = trim($_POST['nisn']);
-    $asal_sekolah = trim($_POST['asal_sekolah']);
-    $no_wa        = trim($_POST['no_wa']);
-    $email        = trim($_POST['email']);
-
-    // Cek apakah NISN sudah terdaftar
-    $cek = mysqli_query($koneksi, "SELECT id FROM pendaftaran WHERE nisn = '$nisn'");
-    
-    if (mysqli_num_rows($cek) == 0) {
-        // Jika NISN BELUM ADA -> Simpan Baru
-        $stmt = mysqli_prepare($koneksi, "INSERT INTO pendaftaran (nisn, nama_lengkap, asal_sekolah, no_wa, email) VALUES (?, ?, ?, ?, ?)");
-        mysqli_stmt_bind_param($stmt, "sssss", $nisn, $nama, $asal_sekolah, $no_wa, $email);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
-    }
-    // Langsung Redirect ke File PDF untuk di-download (Baik pendaftar baru / NISN sudah ada)
-    if (file_exists($file_pdf_path)) {
-        header('Content-Type: application/pdf');
-        header('Content-Disposition: attachment; filename="Formulir_Pendaftaran_PPDB.pdf"');
-        readfile($file_pdf_path);
-        echo "duplikat jir";
-        exit();
-    } else {
-        $msg_ppdb = 'Data berhasil diperbarui, namun file PDF formulir belum diunggah di server.';
-    }
-}
-
-// 2. PROSES CEK STATUS / DOWNLOAD ULANG
-if (isset($_POST['cek_ppdb'])) {
-    $keyword = trim($_POST['keyword_cek']);
-    $cek = mysqli_query($koneksi, "SELECT id FROM pendaftaran WHERE nisn = '$keyword' OR no_wa = '$keyword'");
-
-    if (mysqli_num_rows($cek) > 0) {
-        if (file_exists($file_pdf_path)) {
-            header('Content-Type: application/pdf');
-            header('Content-Disposition: attachment; filename="Formulir_Pendaftaran_PPDB.pdf"');
-            readfile($file_pdf_path);
-            exit();
-        } else {
-            $msg_ppdb = 'Data ditemukan, namun file PDF formulir belum tersedia di server.';
-        }
-    } else {
-        $msg_ppdb = 'Data pendaftaran tidak ditemukan! Silakan isi formulir di sebelah kiri.';
-    }
-}
+// Ambil 6 berita terbaru
+$stmt = $pdo->query("SELECT * FROM berita ORDER BY id DESC LIMIT 6");
+$berita_terbaru = $stmt->fetchAll();
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -68,8 +24,9 @@ if (isset($_POST['cek_ppdb'])) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="css/ppdb.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont/tabler-icons.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+
 </head>
 <body>
 
@@ -78,7 +35,7 @@ if (isset($_POST['cek_ppdb'])) {
     <div class="topbar-left">
       <span>&#9742; (022) 7890-4321</span>
       <span>&#9993; WA: 0812-3456-7890</span>
-      <span>&#128205; Kota Sejahtera, Jawa Barat</span>
+      <span>&#128205; Kota Bekasi, Jawa Barat</span>
     </div>
     <div class="badge-akreditasi">&#127963; Akreditasi A (Unggul)</div>
   </div>
@@ -87,7 +44,7 @@ if (isset($_POST['cek_ppdb'])) {
 <header class="site-nav">
   <div class="nav-inner wrap" style="padding-left:0;padding-right:0;">
     <a href="#beranda" class="logo">
-      <div class="logo-mark">B</div>
+      <div class="logo-mark"><img src="assets/images/logo.png" alt=""></div>
       <div class="logo-text">
         <div class="name">SMK BHINNEKA NUSANTARA</div>
         <div class="tag">Kejuruan Unggulan Vokasi</div>
@@ -98,11 +55,11 @@ if (isset($_POST['cek_ppdb'])) {
       <a href="#beranda" class="active">Beranda</a>
       <a href="#profil">Profil</a>
       <div class="dropdown">
-        <a href="#jurusan">Jurusan <span class="count-pill">3 MAJOR</span></a>
+        <a href="#jurusan">Jurusan <span class="count-pill">3 Pilihan</span></a>
         <div class="dropdown-panel">
           <a href="#jurusan"><strong>Rekayasa Perangkat Lunak</strong>Software &amp; Web App</a>
-          <a href="#jurusan"><strong>Akuntansi Keuangan Lembaga</strong>Financial &amp; Banking</a>
-          <a href="#jurusan"><strong>Teknik Sepeda Motor</strong>Injeksi &amp; Diagnostic</a>
+          <a href="#jurusan"><strong>Akuntansi Keuangan Lembaga</strong>Akutansi &amp; Banking</a>
+          <a href="#jurusan"><strong>Teknik Sepeda Motor</strong>Karbu &amp; Diagnostic</a>
         </div>
       </div>
       <a href="#berita">Berita</a>
@@ -113,7 +70,7 @@ if (isset($_POST['cek_ppdb'])) {
 
     <div class="nav-cta">
       <a href="#kontak" class="btn btn-dark" style="display:none" id="dummy"></a>
-      <!-- <a href="tel:+62227890432" class="btn btn-dark">&#9742; Hubungi Kami</a> -->
+      <!-- <a href="#kontak" class="btn btn-dark">&#9742; Hubungi Kami</a> -->
       <button class="burger" id="burgerBtn" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -194,7 +151,6 @@ if (isset($_POST['cek_ppdb'])) {
     <div class="stat-item"><div class="num">96.4%</div><div class="label">Tingkat &amp; Kelulusan</div></div>
   </div>
 </div>
-
 
 <!-- ===== PROFIL ===== -->
 <section id="profil">
@@ -290,45 +246,32 @@ if (isset($_POST['cek_ppdb'])) {
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Kabar Sekolah</span>
-      <h2>Berita &amp; Kegiatan Terbaru</h2>
-      <p>Informasi terkini seputar prestasi siswa, kegiatan sekolah, dan kerja sama industri.</p>
+      <h2>Kegiatan&amp; Terbaru</h2>
+      <p>Informasi terkini seputar prestasi siswa, kegiatan sekolah.</p>
     </div>
-
     <div class="berita-grid">
-      <?php
-      // 1. Ambil maksimal 6 berita terbaru (diurutkan dari yang paling baru)
-      $berita_db = mysqli_query($koneksi, "SELECT * FROM berita ORDER BY id DESC LIMIT 6");
-
-      // 2. Cek apakah ada berita di database
-      if (mysqli_num_rows($berita_db) > 0) :
-        while ($b = mysqli_fetch_assoc($berita_db)) :
-          // Format tanggal MySQL (YYYY-MM-DD) ke bentuk readable (ex: 12 Jul 2026)
-          $tgl = date('d M Y', strtotime($b['tanggal']));
-      ?>
+      <?php if (!empty($berita_terbaru)): ?>
+        <?php foreach ($berita_terbaru as $b): ?>
           <div class="berita-card">
             <div class="berita-thumb">
               <img src="<?= htmlspecialchars($b['gambar']) ?>" alt="<?= htmlspecialchars($b['judul']) ?>">
             </div>
             <div class="berita-body">
-              <span class="berita-tag"><?= htmlspecialchars($b['kategori']) ?></span>
+              <span class="berita-tag"><?= htmlspecialchars($b['tag']) ?></span>
               <h4><?= htmlspecialchars($b['judul']) ?></h4>
-              <p><?= htmlspecialchars($b['deskripsi']) ?></p>
-              <div class="berita-meta"><?= $tgl ?> &middot; <?= htmlspecialchars($b['penulis']) ?></div>
+              <p><?= htmlspecialchars($b['ringkasan']) ?></p>
+              <div class="berita-meta">
+                <?= date('d M Y', strtotime($b['tanggal'])) ?> &middot; <?= htmlspecialchars($b['penulis']) ?>
+              </div>
             </div>
           </div>
-      <?php 
-        endwhile;
-      else :
-      ?>
-        <!-- Tampilan opsional jika tidak ada berita di database -->
-        <p style="grid-column: 1/-1; text-align: center; color: #666; padding: 20px 0;">
-          Belum ada berita atau kegiatan terbaru.
-        </p>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <p>Belum ada berita terbaru.</p>
       <?php endif; ?>
     </div>
   </div>
 </section>
-
 
 <!-- ===== EKSKUL ===== -->
 <section id="ekskul">
@@ -338,37 +281,16 @@ if (isset($_POST['cek_ppdb'])) {
       <h2>Ekstrakurikuler Pilihan</h2>
       <p>Ruang bagi siswa untuk mengembangkan minat, bakat, dan karakter di luar jam pelajaran.</p>
     </div>
-    
     <div class="ekskul-grid">
-      <?php
-      // 1. Ambil data ekskul dari database MySQL
-      $ekskul_db = mysqli_query($koneksi, "SELECT * FROM ekskul ORDER BY id DESC");
-      
-      // 2. Jika ada datanya, cetak elemen .eks-card secara berulang
-      if (mysqli_num_rows($ekskul_db) > 0) :
-        while ($e = mysqli_fetch_assoc($ekskul_db)) :
-      ?>
-          <div class="eks-card">
-            <!-- PERBAIKAN DI SINI -->
-            <div class="eks-icon">
-                <i class="fa-solid <?= htmlspecialchars($e['ikon']) ?>"></i>
-            </div>
-            <h4><?= htmlspecialchars($e['nama']) ?></h4>
-            <p><?= htmlspecialchars($e['deskripsi']) ?></p>
-          </div>
-      <?php 
-        endwhile;
-      else :
-      ?>
-        <!-- Tampilan opsional jika database ekskul masih kosong -->
-        <p style="grid-column: 1/-1; text-align: center; color: #666;">
-          Belum ada data ekstrakurikuler yang ditambahkan.
-        </p>
-      <?php endif; ?>
+      <div class="eks-card"><div class="eks-icon">&#9917;</div><h4>Futsal &amp; Sepak Bola</h4><p>Latihan rutin dan kompetisi antar sekolah tingkat kabupaten.</p></div>
+      <div class="eks-card"><div class="eks-icon">&#127911;</div><h4>Paduan Suara</h4><p>Wadah pengembangan bakat musik dan vokal siswa.</p></div>
+      <div class="eks-card"><div class="eks-icon">&#128187;</div><h4>Robotik &amp; IT Club</h4><p>Eksplorasi pemrograman, robotika, dan kompetisi coding.</p></div>
+      <div class="eks-card"><div class="eks-icon">&#129497;</div><h4>Pramuka</h4><p>Membangun kedisiplinan, kemandirian, dan jiwa kepemimpinan.</p></div>
+      <div class="eks-card"><div class="eks-icon">&#129354;</div><h4>Menari</h4><p>Pelestarian seni bela diri tradisional Indonesia.</p></div>
+      <div class="eks-card"><div class="eks-icon">&#128218;</div><h4>Bulu Tangkis</h4><p>Mengembangkan keterampilan bermain bulu tangkis, sportivitas, serta menjaga kebugaran dan kerja sama tim.</p></div>
     </div>
   </div>
 </section>
-
 
 <!-- ===== FAQ ===== -->
 <section id="faq">
@@ -398,133 +320,107 @@ if (isset($_POST['cek_ppdb'])) {
   </div>
 </section>
 
-<!-- ===== SECTION PPDB FORM ===== -->
- 
-<!-- ===== SECTION PPDB ===== -->
+
+<!-- ===== SECTION PPDB FORMULIR (MINIMALIS) ===== -->
 <section id="ppdb" class="ppdb-section">
   <div class="wrap">
     
-    <?php
-    // 1. Cek Status PPDB dari Database (1 = Buka, 0 = Tutup)
-    // Silakan sesuaikan variabel $koneksi dengan nama koneksi database-mu
-    $q_status = mysqli_query($koneksi, "SELECT nilai FROM pengaturans WHERE nama_pengaturan = 'status_ppdb'");
-    $d_status = mysqli_fetch_assoc($q_status);
-    $is_ppdb_open = ($d_status['nilai'] ?? '1') == '1'; 
-    ?>
-
-    <?php if ($is_ppdb_open) : ?>
-      <!-- 🟢 JIKA PPDB DIBUKA (TAMPILKAN FORM LENGKAP) -->
-
-      <?php if(!empty($msg_ppdb)): ?>
-        <div class="ppdb-alert">
-          <?= htmlspecialchars($msg_ppdb) ?>
-        </div>
-      <?php endif; ?>
-
-      <div class="ppdb-grid">
-        
-        <!-- FORM KIRI: Pendaftaran Utama -->
-        <div class="ppdb-card-main">
-          <h3>
-            <i class="fa-solid fa-user-plus"></i> FORMULIR PENDAFTARAN SISWA BARU
-          </h3>
-
-          <form method="POST">
-            <div class="ppdb-form-group">
-              <label>Nama Lengkap Calon Siswa <span style="color:red">*</span></label>
-              <input type="text" name="nama_lengkap" placeholder="Contoh: Muhammad Rizky Pratama" required>
-            </div>
-
-            <div class="ppdb-form-row">
-              <div>
-                <label>NISN Siswa <span style="color:red">*</span></label>
-                <input type="number" name="nisn" placeholder="10 digit NISN (Contoh: 0001234567)" required>
-              </div>
-              <div>
-                <label>Asal Sekolah (SMP / MTs) <span style="color:red">*</span></label>
-                <input type="text" name="asal_sekolah" placeholder="Contoh: SMP Negeri 1 Kota Sejahtera" required>
-              </div>
-            </div>
-
-            <div class="ppdb-form-row">
-              <div>
-                <label>Nomor WhatsApp / HP Aktif <span style="color:red">*</span></label>
-                <input type="text" name="no_wa" placeholder="Contoh: 081234567890" required>
-              </div>
-              <div>
-                <label>Alamat Email Aktif <span style="color:gray">(Opsional)</span></label>
-                <input type="email" name="email" placeholder="Contoh: siswa@gmail.com">
-              </div>
-            </div>
-
-            <button type="submit" name="submit_ppdb" class="ppdb-btn-submit">
-              <i class="fa-solid fa-file-arrow-down"></i> Kirim Pendaftaran PPDB &amp; Unduh Formulir
-            </button>
-          </form>
-        </div>
-
-        <!-- KANAN: Foto, Cek Status & Alur -->
-        <div class="ppdb-sidebar">
-          
-          <!-- Box Foto Gedung -->
-          <div class="ppdb-card-gedung">
-            <div class="ppdb-gedung-thumb">
-              <img src="assets/images/smk.jpeg" alt="Gedung Pendaftaran PPDB">
-              <span class="ppdb-gedung-badge">
-                Gedung Pendaftaran PPDB
-              </span>
-            </div>
-          </div>
-
-          <!-- Box Cek Status -->
-          <div class="ppdb-card-cek">
-            <span class="ppdb-badge-sub">
-              <i class="fa-solid fa-magnifying-glass"></i> Cek Status Pendaftaran
-            </span>
-            <h4>Sudah Pernah Mendaftar?</h4>
-            <p>
-              Masukkan NISN atau Nomor WA pendaftar untuk mengunduh ulang formulir pendaftaran.
-            </p>
-            <form method="POST">
-              <input type="text" name="keyword_cek" placeholder="NISN / No. WA..." required class="ppdb-input-dark">
-              <button type="submit" name="cek_ppdb" class="ppdb-btn-cek">
-                Cari Data Pendaftaran
-              </button>
-            </form>
-          </div>
-
-          <!-- Box Informatif Alur -->
-          <div class="ppdb-card-info">
-            <h5>
-              <i class="fa-solid fa-circle-info" style="color: #b87333;"></i> ALUR SETELAH MENDAFTAR
-            </h5>
-            <ol class="ppdb-list-alur">
-              <li>Unduh &amp; Cetak <b>Formulir Pendaftaran PDF</b>.</li>
-              <li>Siapkan berkas FC Ijazah/SKL, Kartu Keluarga, dan Pas Foto 3x4.</li>
-              <li>Datang ke sekretariat PPDB SMK Bhinneka Nusantara untuk verifikasi fisik &amp; pengambilan seragam.</li>
-            </ol>
-          </div>
-
-        </div>
-
+    <!-- Alert Session -->
+    <?php if (isset($_SESSION['msg_success'])): ?>
+      <div class="alert-ppdb alert-success">
+        <?= $_SESSION['msg_success']; unset($_SESSION['msg_success']); ?>
       </div>
-
-    <?php else : ?>
-      <!-- 🔴 JIKA PPDB DITUTUP OLEH ADMIN (TAMPILKAN BANNER PEMBERITAHUAN) -->
-      <div style="text-align: center; background: #ffffff; padding: 60px 20px; border-radius: 24px; border: 1px solid rgba(14,56,43,0.1); max-width: 700px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
-        <div style="font-size: 50px; color: #b87333; margin-bottom: 15px;">
-          <i class="fa-solid fa-lock"></i>
-        </div>
-        <h2 style="color: #0e382b; margin-bottom: 12px; font-family: 'Fraunces', serif;">Pendaftaran PPDB Ditutup</h2>
-        <p style="color: #4a5d52; font-size: 15px; line-height: 1.6; max-width: 520px; margin: 0 auto 24px;">
-          Saat ini pendaftaran Peserta Didik Baru SMK Bhinneka Nusantara belum dibuka atau telah berakhir. Silakan pantau informasi resmi atau hubungi panitia kami.
-        </p>
-        <a href="#kontak" class="ppdb-btn-submit" style="display: inline-flex; width: auto; text-decoration: none; padding: 12px 24px;">
-          <i class="fa-solid fa-phone"></i> Hubungi Panitia PPDB
-        </a>
+    <?php endif; ?>
+    
+    <?php if (isset($_SESSION['msg_error'])): ?>
+      <div class="alert-ppdb alert-danger">
+        <?= $_SESSION['msg_error']; unset($_SESSION['msg_error']); ?>
       </div>
     <?php endif; ?>
 
+    <div class="ppdb-grid">
+      
+      <!-- KOLOM KIRI: FORM RINGKAS -->
+      <div class="ppdb-card-main">
+        <form action="backend/proses_ppdb.php" method="POST">
+          
+          <div class="section-subtitle">📝 PENDAFTARAN AKUN PPDB (LANGKAH 1)</div>
+          
+          <div class="form-group-ppdb">
+            <label>Nama Lengkap Calon Siswa *</label>
+            <input type="text" name="nama_lengkap" class="form-control-ppdb" placeholder="Contoh: Muhammad Rizky Pratama" required>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group-ppdb">
+              <label>NISN Siswa *</label>
+              <input type="text" name="nisn" class="form-control-ppdb" placeholder="10 Digit NISN" required>
+            </div>
+            <div class="form-group-ppdb">
+              <label>Asal Sekolah (SMP / MTs) *</label>
+              <input type="text" name="asal_sekolah" class="form-control-ppdb" placeholder="Contoh: SMPN 1 Banjarmasin" required>
+            </div>
+          </div>
+
+          <div class="section-subtitle">📱 KONTAK INFORMASI (UNTUK UPDATE GELOMBANG)</div>
+
+          <div class="form-row-2">
+            <div class="form-group-ppdb">
+              <label>Nomor WhatsApp Aktif *</label>
+              <input type="text" name="no_wa" class="form-control-ppdb" placeholder="Contoh: 081234567890" required>
+            </div>
+            <div class="form-group-ppdb">
+              <label>Alamat Email Aktif *</label>
+              <input type="email" name="email" class="form-control-ppdb" placeholder="Contoh: siswa@gmail.com" required>
+            </div>
+          </div>
+
+          <button type="submit" name="daftar_ppdb" class="btn-ppdb-gold btn-submit-form">Kirim & Dapatkan Kode Pendaftaran</button>
+        </form>
+      </div>
+
+      <!-- KOLOM KANAN: CEK STATUS & UNDUH PDF KAMU -->
+      <div>
+        <div class="ppdb-card-sidebar">
+          <h4 class="ppdb-sidebar-title">🔍 CEK STATUS & UNDUH PDF</h4><br>
+          <p class="ppdb-sidebar-desc">Masukkan Kode Pendaftaran / NISN / No. WA untuk mengunduh formulir fisik PDF buatan sekolah.</p>
+          
+          <form action="backend/proses_ppdb.php" method="POST">
+            <div class="form-group-ppdb">
+              <input type="text" name="keyword_pencarian" class="form-control-ppdb" placeholder="Kode / No. WA / NISN..." required>
+            </div>
+            <button type="submit" name="cek_status" class="btn-ppdb-gold">Cari Data</button>
+          </form>
+
+          <!-- HASIL CARI & DOWNLOAD TEMPLATE PDF DARI ASSETS -->
+          <?php if (isset($_SESSION['data_pendaftar'])): 
+            $data = $_SESSION['data_pendaftar'];
+            unset($_SESSION['data_pendaftar']); 
+          ?>
+            <div class="ppdb-result-box">
+              <p><b>Nama:</b> <?= htmlspecialchars($data['nama_lengkap']) ?></p>
+              <p><b>Kode:</b> <?= htmlspecialchars($data['kode_pendaftaran']) ?></p>
+              <p><b>Gelombang:</b> <?= htmlspecialchars($data['gelombang']) ?></p>
+              
+              <!-- DOWLOAD FILE PDF DARI ASSETS -->
+              <a href="assets/pdf/wedding-dress-mari-v0-otfqzrgv8c9b1.pdf" target="_blank" download class="btn-ppdb-gold" style="margin-top: 10px;">
+                📄 Unduh Formulir Fisik (PDF)
+              </a>
+            </div>
+          <?php endif; ?>
+        </div>
+
+        <div class="ppdb-card-info">
+          <h5 class="ppdb-info-title">📋 LANGKAH SELANJUTNYA</h5>
+          <ol class="ppdb-info-list">
+            <li>Simpan <b>Kode Pendaftaran</b> yang Anda dapatkan.</li>
+            <li>Unduh & cetak <b>Formulir Fisik PDF</b>.</li>
+            <li>Isi formulir fisik tersebut & serahkan ke Panitia PPDB di sekolah bersama kelengkapan berkas saat gelombang dibuka.</li>
+          </ol>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -560,24 +456,25 @@ if (isset($_POST['cek_ppdb'])) {
           </li>
           <li>
             <div class="ic">&#128337;</div>
-            <div><strong>Jam Layanan</strong><span>Senin — Jumat, 07.00 — 15.30 WIB</span></div>
+            <div><strong>Jam Layanan</strong><span>Senin — Sabtu, 07.00 — 12.00 WIB</span></div>
           </li>
         </ul>
         <div class="kontak-social">
-          <a href="#"> <i class="fab fa-facebook"></i> </a>
-          <a href="#"> <i class="fab fa-instagram"></i> </a>
-          <a href="#"> <i class="fab fa-github"></i> </a>
+          <a href="#" aria-label="Instagram"> <i class="fab fa-instagram"></i> </a>
+          <a href="#" aria-label="Facebook"> <i class="fab fa-facebook"></i> </a>
+          <a href="#" aria-label="YouTube"> <i class="fab fa-youtube"></i> </a>
+
         </div>
       </div>
 
       <div class="kontak-map">
         <div class="map-search">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          <input id="mapAddressInput" type="text" placeholder="Ketik alamat sekolah, cth: Jl. Pendidikan Raya No. 45, Kota Sejahtera">
+          <input id="mapAddressInput" type="text" placeholder="Ketik alamat sekolah, cth: Jl. Kemang sari ">
           <button id="mapUpdateBtn">Arahkan Peta</button>
         </div>
         <iframe id="schoolMap" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.960325119178!2d106.93139840874544!3d-6.268948393693554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698d701018c34d%3A0x25cf57d09e074361!2sSMK%20BINUS!5e0!3m2!1sid!2sid!4v1786431031223!5m2!1sid!2sid">
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.9603656655654!2d106.93140377378073!3d-6.268943061367868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698d701018c34d%3A0x25cf57d09e074361!2sSMK%20BINUS!5e0!3m2!1sid!2sid!4v1786072476816!5m2!1sid!2sid">
         </iframe>
         <div class="map-hint">&#128205; Ketik alamat lalu klik "Arahkan Peta" untuk memperbarui lokasi</div>
       </div>
@@ -585,17 +482,18 @@ if (isset($_POST['cek_ppdb'])) {
   </div>
 </section>
 
+
 <footer>
   <div class="wrap">
     <div class="footer-grid">
       <div>
         <div class="footer-logo">
-          <div class="logo-mark">B</div>
+          <div class="logo-mark"><img src="assets/images/logo.png" alt=""></div>
           <div class="logo-text">
             <div class="name" style="color:var(--cream);">SMK BHINNEKA NUSANTARA</div>
           </div>
         </div>
-        <p>Sekolah kejuruan terakreditasi A (Unggul) yang mencetak generasi kompeten, terampil, dan siap kerja sejak 1998.</p>
+        <p>Sekolah kejuruan terakreditasi A (Unggul) yang mencetak generasi kompeten, terampil, dan siap kerja sejak 2017.</p>
       </div>
       <div class="footer-col">
         <h5>Navigasi</h5>
@@ -625,7 +523,7 @@ if (isset($_POST['cek_ppdb'])) {
     </div>
     <div class="footer-bottom">
       <span>&copy; 2026 SMK Bhinneka Nusantara. Seluruh hak cipta dilindungi.</span>
-      <span>Kota Sejahtera, Jawa Barat, Indonesia</span>
+      <span>Kota Bekasi, Jawa Barat, Indonesia</span>
     </div>
   </div>
 </footer>
