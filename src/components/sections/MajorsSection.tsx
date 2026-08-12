@@ -190,6 +190,7 @@ export const MajorsSection: React.FC<MajorsSectionProps> = ({ onNavigatePPDB }) 
                     </div>
 
                     {/* Lab Facilities */}
+                    {/* Lab facilitas */}
                     <div className="p-3 rounded-xl bg-[#1b3828] text-white space-y-1">
                       <div className="text-[11px] font-bold text-[#c5a059] uppercase tracking-wider flex items-center gap-1">
                         <Monitor size={12} />
