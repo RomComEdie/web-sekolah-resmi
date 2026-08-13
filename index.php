@@ -86,13 +86,14 @@ if (isset($_POST['cek_ppdb'])) {
 
 <header class="site-nav">
   <div class="nav-inner wrap" style="padding-left:0;padding-right:0;">
-    <a href="#beranda" class="logo">
-      <div class="logo-mark">B</div>
-      <div class="logo-text">
-        <div class="name">SMK BHINNEKA NUSANTARA</div>
-        <div class="tag">Kejuruan Unggulan Vokasi</div>
-      </div>
-    </a>
+      <a href="#beranda" class="logo">
+        <!-- Ganti div logo-mark dengan tag img -->
+        <img src="assets/images/logo.png" alt="Logo SMK Bhinneka Nusantara" class="logo-img">
+        <div class="logo-text">
+          <div class="name">SMK BHINNEKA NUSANTARA</div>
+          <div class="tag">Kejuruan Unggulan Vokasi</div>
+        </div>
+      </a>
 
     <nav class="main-links">
       <a href="#beranda" class="active">Beranda</a>
@@ -103,12 +104,14 @@ if (isset($_POST['cek_ppdb'])) {
           <a href="#jurusan"><strong>Rekayasa Perangkat Lunak</strong>Software &amp; Web App</a>
           <a href="#jurusan"><strong>Akuntansi Keuangan Lembaga</strong>Financial &amp; Banking</a>
           <a href="#jurusan"><strong>Teknik Sepeda Motor</strong>Injeksi &amp; Diagnostic</a>
+          
         </div>
       </div>
       <a href="#berita">Berita</a>
       <a href="#ekskul">Ekskul</a>
       <a href="#faq">FAQ</a>
       <a href="#kontak">Kontak</a>
+      <a href="#ppdb">PPDB</a>
     </nav>
 
     <div class="nav-cta">
@@ -128,6 +131,7 @@ if (isset($_POST['cek_ppdb'])) {
     <a href="#ekskul" style="padding:12px 6px;font-weight:600;">Ekskul</a>
     <a href="#faq" style="padding:12px 6px;font-weight:600;">FAQ</a>
     <a href="#kontak" style="padding:12px 6px;font-weight:600;">Kontak</a>
+    <a href="#ppdb" style="padding:12px 6px;font-weight:600;">PPDB</a>
   </nav>
 </header>
 
@@ -213,14 +217,17 @@ if (isset($_POST['cek_ppdb'])) {
           <div class="num">01</div>
           <div>
             <h4>Visi Sekolah</h4>
-            <p>Menjadi lembaga pendidikan kejuruan unggulan yang menghasilkan lulusan kompeten, berkarakter, dan berdaya saing global pada tahun 2030.</p>
+            <p>Terwujudnya lulusan yang cerdas,kompeten, terampil</p>
           </div>
         </div>
         <div class="vm-card">
           <div class="num">02</div>
           <div>
+            <!-- kerjaan ipul kicau -->
             <h4>Misi Sekolah</h4>
-            <p>Menyelenggarakan pembelajaran berbasis industri, menjalin kemitraan aktif dengan DUDI, dan membekali siswa dengan sertifikasi kompetensi yang diakui secara nasional.</p>
+            <p>Menyiapkan siswa menjadi tenaga kerja yang terampil dan kompeten di dunia industri.</p>
+            <!-- <p>2.menyiapkan siswa untuk tenaga kerja sendiri dan dan berjiwa kewirausahaan.</p>
+            <p>3.membina dan mencerdaskan siswa yang menuju.</p> -->
           </div>
         </div>
         <div class="vm-card">
@@ -291,7 +298,7 @@ if (isset($_POST['cek_ppdb'])) {
     <div class="section-head">
       <span class="eyebrow">Kabar Sekolah</span>
       <h2>Berita &amp; Kegiatan Terbaru</h2>
-      <p>Informasi terkini seputar prestasi siswa, kegiatan sekolah, dan kerja sama industri.</p>
+      <p>Informasi terkini seputar prestasi siswa, kegiatan sekolah.</p>
     </div>
 
     <div class="berita-grid">
@@ -466,16 +473,7 @@ if (isset($_POST['cek_ppdb'])) {
         <!-- KANAN: Foto, Cek Status & Alur -->
         <div class="ppdb-sidebar">
           
-          <!-- Box Foto Gedung -->
-          <div class="ppdb-card-gedung">
-            <div class="ppdb-gedung-thumb">
-              <img src="assets/images/smk.jpeg" alt="Gedung Pendaftaran PPDB">
-              <span class="ppdb-gedung-badge">
-                Gedung Pendaftaran PPDB
-              </span>
-            </div>
-          </div>
-
+          
           <!-- Box Cek Status -->
           <div class="ppdb-card-cek">
             <span class="ppdb-badge-sub">
@@ -495,6 +493,15 @@ if (isset($_POST['cek_ppdb'])) {
 
           <!-- Box Informatif Alur -->
           <div class="ppdb-card-info">
+            <!-- Box Foto Gedung -->
+            <div class="ppdb-card-gedung">
+              <div class="ppdb-gedung-thumb">
+                <img src="assets/images/smk.jpeg" alt="Gedung Pendaftaran PPDB">
+                <span class="ppdb-gedung-badge">
+                  Gedung Pendaftaran PPDB
+                </span>
+              </div>
+            </div>
             <h5>
               <i class="fa-solid fa-circle-info" style="color: #b87333;"></i> ALUR SETELAH MENDAFTAR
             </h5>
