@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: all 0.25s ease;
+}
+
+body {
+    background-color: #f7f4ed; /* Krem halus ala landing page */
+    color: #1a2e26;
+    margin: 0;
+    padding: 30px 20px;
+}
+
+.container {
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+/* Header Dashboard Modern */
+.header {
+    background: #0e382b; /* Hijau Hutan Deep */
+    color: #f7f4ed;
+    padding: 20px 28px;
+    border-radius: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(14, 56, 43, 0.15);
+    margin-bottom: 25px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-info {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.user-info a {
+    color: #d4e0d7;
+    text-decoration: none;
+    margin-left: 12px;
+    font-weight: 600;
+}
+
+.user-info a.logout {
+    color: #ff8b8b;
+}
+
+/* Card Container Modern */
+.card {
+    background: #ffffff;
+    padding: 28px;
+    border-radius: 24px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(14, 56, 43, 0.06);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.card h3 {
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    color: #0e382b;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Grid Layout Form Supaya Menyamping */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+/* Form Elements - Inset Neumorphism Halus di Atas Kartu Putih */
+input, select, textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: none;
+    outline: none;
+    background: #f3efe6; /* Warna latar dasar krem lebih tegas */
+    color: #0e382b;
+    font-size: 14px;
+    font-weight: 500;
+    /* Bayangan cekung ke dalam (inset) */
+    box-shadow: inset 3px 3px 6px rgba(14, 56, 43, 0.15), 
+                inset -3px -3px 6px #ffffff;
+    transition: all 0.2s ease;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #718378;
+}
+
+input:focus, select:focus, textarea:focus {
+    background: #ede8dc;
+    box-shadow: inset 4px 4px 7px rgba(14, 56, 43, 0.22), 
+                inset -4px -4px 7px #ffffff,
+                0 0 0 2px rgba(14, 56, 43, 0.2);
+}
+
+/* TOMBOL NEUMORPHISM (Timbul Halus) */
+.btn-neu {
+    background: #0e382b;
+    color: #f7f4ed;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 18px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 5px 5px 12px rgba(14, 56, 43, 0.25), 
+                -4px -4px 10px rgba(255, 255, 255, 0.8);
+}
+
+.btn-neu:hover {
+    background: #144d3b;
+    transform: translateY(-2px);
+    box-shadow: 7px 7px 16px rgba(14, 56, 43, 0.3), 
+                -5px -5px 12px rgba(255, 255, 255, 0.9);
+}
+
+.btn-neu:active {
+    transform: translateY(1px);
+    box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Table Design */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+}
+
+th {
+    background: #f4efe6;
+    color: #0e382b;
+    padding: 14px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: left;
+}
+
+th:first-child { border-radius: 12px 0 0 12px; }
+th:last-child { border-radius: 0 12px 12px 0; }
+
+td {
+    padding: 16px;
+    border-bottom: 1px solid #f0eae1;
+    font-size: 14px;
+}
+
+.badge {
+    background: #e3ede7;
+    color: #0e382b;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.btn-del {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 8px 14px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.btn-del:hover {
+    background: #ef4444;
+    color: #ffffff;
+}
+
+.alert-success { background: #dcfce7; color: #166534; padding: 14px 20px; border-radius: 16px; margin-bottom: 20px; font-weight: 500; }
+.alert-error { background: #fee2e2; color: #991b1b; padding: 14px 20px; border-radius: 16px; margin-bottom: 20px; font-weight: 500; }
