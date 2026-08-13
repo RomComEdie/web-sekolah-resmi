@@ -71,6 +71,7 @@ if (isset($_POST['cek_ppdb'])) {
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/ppdb.css">
+  <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
 </head>
 
 <body>
@@ -89,7 +90,7 @@ if (isset($_POST['cek_ppdb'])) {
   <header class="site-nav">
     <div class="nav-inner wrap" style="padding-left:0;padding-right:0;">
       <a href="#beranda" class="logo">
-        <!-- Ganti div logo-mark dengan tag img -->
+
         <img src="assets/images/logo.png" alt="Logo SMK Bhinneka Nusantara" class="logo-img">
         <div class="logo-text">
           <div class="name">SMK BHINNEKA NUSANTARA</div>
