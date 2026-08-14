@@ -92,7 +92,7 @@ if (isset($_POST['cek_ppdb'])) {
       <div class="topbar-left">
         <span>&#9742; (022) 7890-4321</span>
         <span>&#9993; WA: 0812-3456-7890</span>
-        <span>&#128205; Kota Sejahtera, Jawa Barat</span>
+        <span>&#128205; Kota Bekasi, Jawa Barat</span>
       </div>
       <div class="badge-akreditasi">&#127963; Akreditasi B (Baik Sekali)</div>
     </div>
@@ -175,7 +175,7 @@ if (isset($_POST['cek_ppdb'])) {
               </svg> Lab Industry Standard</li>
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                 <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-              </svg> 8+ Mitra Kerja DUDI</li>
+              </svg> 8+ Mitra Kerja</li>
           </ul>
           <div class="hero-actions">
             <a href="#profil" class="btn btn-gold">Lihat Profil Sekolah &nbsp;&rarr;</a>
@@ -189,7 +189,7 @@ if (isset($_POST['cek_ppdb'])) {
             <img src="assets/images/img.jpeg" alt="Suasana belajar siswa SMK Bhinneka Nusantara">
             <div class="caption">
               <div class="eyebrow">Lingkungan Belajar Asri &amp; Modern</div>
-              <strong>SMK Bhinneka Nusantara Kota Sejahtera</strong>
+              <strong>SMK Bhinneka Nusantara Kota Bekasi</strong>
             </div>
           </div>
           <div class="float-card fc-1">
@@ -287,7 +287,7 @@ if (isset($_POST['cek_ppdb'])) {
     <div class="wrap">
       <div class="section-head on-dark">
         <span class="eyebrow">Program Keahlian</span>
-        <h2>3 Jurusan &amp; Utama</h2>
+        <h2>3 Jurusan yang tersedia</h2>
         <p>Beragam program keahlian dirancang untuk membekali siswa dengan keterampilan sesuai bidang yang diminati dan kebutuhan dunia kerja.</p>
       </div>
       <div class="jurusan-grid">
