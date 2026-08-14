@@ -682,3 +682,62 @@
     display: block !important;
     flex-shrink: 0 !important;
 }
+
+
+/* Container Alert PPDB */
+.ppdb-alert {
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.ppdb-alert i {
+    font-size: 20px;
+    margin-top: 2px;
+}
+
+/* Berhasil (Hijau) */
+.ppdb-alert-success {
+    background-color: #e6f4ea;
+    border: 1px solid #a8dab5;
+    color: #137333;
+}
+
+/* Duplikat / Warning (Kuning/Oranye) */
+.ppdb-alert-warning {
+    background-color: #fef7e0;
+    border: 1px solid #fce8b2;
+    color: #b06000;
+}
+
+/* Gagal / Not Found (Merah) */
+.ppdb-alert-danger {
+    background-color: #fce8e6;
+    border: 1px solid #fad2cf;
+    color: #c5221f;
+}
+
+/* Tombol Download di Dalam Alert */
+.ppdb-btn-download-alert {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #0e382b;
+    color: #ffffff !important;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 4px;
+    transition: background 0.2s ease;
+}
+
+.ppdb-btn-download-alert:hover {
+    background: #185341;
+}
