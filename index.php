@@ -589,7 +589,7 @@ if (isset($_POST['cek_ppdb'])) {
             </li>
             <li>
               <div class="ic">&#128172;</div>
-              <div><strong>WhatsApp</strong><span>0812-3456-7890</span></div>
+              <div><strong>WhatsApp</strong><span>+62 822-9859-4586</span></div>
             </li>
             <li>
               <div class="ic">&#9993;</div>
@@ -597,7 +597,7 @@ if (isset($_POST['cek_ppdb'])) {
             </li>
             <li>
               <div class="ic">&#128337;</div>
-              <div><strong>Jam Layanan</strong><span>Senin — Jumat, 07.00 — 15.30 WIB</span></div>
+              <div><strong>Jam Layanan</strong><span>Senin — sabtu, 07.00 — 15.30 WIB</span></div>
             </li>
           </ul>
           <div class="kontak-social">
@@ -659,7 +659,7 @@ if (isset($_POST['cek_ppdb'])) {
           <h5>Kontak</h5>
           <ul>
             <li><a href="tel:+62227890432">(022) 7890-4321</a></li>
-            <li><a href="#">WA: 0812-3456-7890</a></li>
+            <li><a href="#">WA: 0822-9859-4586</a></li>
             <li><a href="#kontak">Lihat Peta Lokasi</a></li>
           </ul>
         </div>
