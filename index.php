@@ -275,7 +275,7 @@ if (isset($_POST['cek_ppdb'])) {
           <img src="assets/images/shenhe.jpg" alt="Gedung Sekolah">
         </div>
         <div class="ps-slide" data-pos="1">
-          <img src="assets/images/alamak.png" alt="Suasana Belajar">
+          <img src="assets/images/c.jpg" alt="Suasana Belajar">
         </div>
         <div class="ps-slide" data-pos="2">
           <img src="assets/images/my.jpg" alt="Laboratorium Sekolah">
