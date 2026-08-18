@@ -272,13 +272,13 @@ if (isset($_POST['cek_ppdb'])) {
 
       <div class="ps-track" id="psTrack">
         <div class="ps-slide is-active" data-pos="0">
-          <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1000&q=80" alt="Gedung Sekolah">
+          <img src="assets/images/shenhe.jpg" alt="Gedung Sekolah">
         </div>
         <div class="ps-slide" data-pos="1">
-          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1000&q=80" alt="Suasana Belajar">
+          <img src="assets/images/alamak.png" alt="Suasana Belajar">
         </div>
         <div class="ps-slide" data-pos="2">
-          <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=1000&q=80" alt="Laboratorium Sekolah">
+          <img src="assets/images/my.jpg" alt="Laboratorium Sekolah">
         </div>
       </div>
 
