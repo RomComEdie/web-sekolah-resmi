@@ -16,9 +16,11 @@
     --shadow-lg:0 24px 60px -20px rgba(0,0,0,0.45);
   }
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;width:100%;}
   body{
     margin:0;
+    width:100%;
+    min-width:100%;
     font-family:'Inter',sans-serif;
     background:var(--cream);
     color:var(--ink);
@@ -41,8 +43,11 @@
   header.site-nav,
   .hero,
   .jurusan-section,
-  .kontak-section{
+  .kontak-section,
+  .ppdb-section{
     width:100%;
+    margin-left:0;
+    margin-right:0;
   }
   .eyebrow{
     font-family:'IBM Plex Mono',monospace;
@@ -245,7 +250,7 @@
   .stat-item .label{font-size:13px;color: black;margin-top:6px;font-weight:500;}
 
   /* ===== SECTION SHARED ===== */
-  section{padding:120px 0 0;}
+  section{padding:60px 0 0;}
   section:last-of-type{padding-bottom:0;}
   .section-head{max-width:640px;margin-bottom:56px;}
   .section-head .eyebrow{color:var(--sage-dim);margin-bottom:14px;display:block;}
@@ -273,7 +278,7 @@
   .vm-card p{font-size:14.5px;color:var(--ink-soft);line-height:1.65;}
 
   /* ===== JURUSAN ===== */
-  .jurusan-section{background:var(--forest-deep);color:var(--cream);position:relative;overflow:hidden;padding-bottom:120px;}
+  .jurusan-section{background:var(--forest-deep);color:var(--cream);position:relative;overflow:hidden;padding-bottom:60px;}
   .jurusan-section::before{
     content:"";position:absolute;inset:0;
     background-image:radial-gradient(rgba(230,214,170,0.1) 1px, transparent 1px);
@@ -699,7 +704,7 @@
   footer{background:var(--forest-deep);color:var(--sage);margin-top:120px;padding:64px 0 28px;}
   .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid var(--line);}
   .footer-logo{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
-  .footer-grid p{font-size:13.5px;line-height:1.7;max-width:280px;color:var(--sage-dim);}
+  .footer-grid p{font-size:13.5px;line-height:1.7;max-width:300px;color:var(--sage-dim);}
   .footer-col h5{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);margin-bottom:18px;font-weight:600;}
   .footer-col ul{display:grid;gap:12px;}
   .footer-col a{font-size:14px;color:var(--sage);}
@@ -1049,5 +1054,33 @@
 
 .ppdb-btn-download-alert:hover {
     background: #185341;
+}
+
+/* ===== WIDTH & BACKGROUND FIX ===== */
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.wrap {
+  width: 100%;
+}
+
+section,
+footer {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+.stats .wrap {
+  background: rgba(240, 248, 255, 0.5);
+}
+
+.ppdb-grid > *,
+.kontak-grid > *,
+.kontak-list li > div:last-child {
+  min-width: 0;
 }
 

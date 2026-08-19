@@ -82,7 +82,7 @@ if (isset($_POST['cek_ppdb'])) {
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/ppdb.css">
-  <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon-32x32.png">
 </head>
 
 <body>
@@ -158,7 +158,7 @@ if (isset($_POST['cek_ppdb'])) {
           <br>
 
           <p class="hero-desc" style="padding-top:10px;">
-            Selamat datang di Website <b>SMK Bhinneka Nusantara</b>. Fasilitas pembelajaran modern berbasis industri dengan 3 program keahlian favorit: <span class="hl">Rekayasa Perangkat Lunak (RPL)</span>, <span class="hl">Akuntansi Keuangan Lembaga (AKL)</span>, dan <span class="hl">Teknik Sepeda Motor (TSM)</span>.
+            Selamat datang di Website <b>SMK Bhinneka Nusantara</b>. Fasilitas pembelajaran modern berbasis industri dengan 3 program keahlian utama: <span class="hl">Rekayasa Perangkat Lunak (RPL)</span>, <span class="hl">Akuntansi Keuangan Lembaga (AKL)</span>, dan <span class="hl">Teknik Sepeda Motor (TSM)</span>.
           </p>
           <br>
           <div class="hero-badge">
@@ -306,6 +306,8 @@ if (isset($_POST['cek_ppdb'])) {
   </div>
 </div>
 
+</div>
+</section>
 
   <!-- Stuktur Organisasi Sekolah -->
   <section class="struktur" id="">
@@ -319,6 +321,7 @@ if (isset($_POST['cek_ppdb'])) {
     <div class="wrap">
       <div class="section-head on-dark">
         <span class="eyebrow">Program Keahlian</span>
+        
         <h2>3 Jurusan yang tersedia</h2>
         <p>Beragam program keahlian dirancang untuk membekali siswa dengan keterampilan sesuai bidang yang diminati dan kebutuhan dunia kerja.</p>
       </div>
