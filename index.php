@@ -82,7 +82,7 @@ if (isset($_POST['cek_ppdb'])) {
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/ppdb.css">
-  <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon-32x32.png">
 </head>
 
 <body>
@@ -158,7 +158,7 @@ if (isset($_POST['cek_ppdb'])) {
           <br>
 
           <p class="hero-desc" style="padding-top:10px;">
-            Selamat datang di Website <b>SMK Bhinneka Nusantara</b>. Fasilitas pembelajaran modern berbasis industri dengan 3 program keahlian favorit: <span class="hl">Rekayasa Perangkat Lunak (RPL)</span>, <span class="hl">Akuntansi Keuangan Lembaga (AKL)</span>, dan <span class="hl">Teknik Sepeda Motor (TSM)</span>.
+            Selamat datang di Website <b>SMK Bhinneka Nusantara</b>. Fasilitas pembelajaran modern berbasis industri dengan 3 program keahlian utama: <span class="hl">Rekayasa Perangkat Lunak (RPL)</span>, <span class="hl">Akuntansi Keuangan Lembaga (AKL)</span>, dan <span class="hl">Teknik Sepeda Motor (TSM)</span>.
           </p>
           <br>
           <div class="hero-badge">
@@ -240,40 +240,74 @@ if (isset($_POST['cek_ppdb'])) {
         <h2>Profil SMK Bhinneka Nusantara</h2>
         <p>Berdiri sejak 2017, kami berkomitmen menghadirkan pendidikan vokasi yang relevan dengan kebutuhan dunia usaha dan dunia industri (DUDI), dibimbing oleh tenaga pengajar bersertifikasi dan fasilitas laboratorium setara standar industri.</p>
       </div>
-      <div class="profil-grid">
-        <div class="profil-img">
-          <img src="assets/images/smk.jpeg" alt="Gedung dan siswa SMK Bhinneka Nusantara">
-        </div>
-        <div class="vm-cards">
-          <div class="vm-card">
-            <div class="num">01</div>
-            <div>
-              <h4>Visi Sekolah</h4>
-              <p>Terwujudnya lulusan yang cerdas,kompeten, terampil Dan Berakhlaq mulia </p>
-            </div>
-          </div>
-          <div class="vm-card">
-            <div class="num">02</div>
-            <div>
-              <!-- kerjaan ipul kicau -->
-              <h4>Misi Sekolah</h4>
-              <p>Menyiapkan siswa menjadi tenaga kerja yang terampil dan kompeten di dunia industri.</p>
-
-              <!-- <p>2.menyiapkan siswa untuk tenaga kerja sendiri dan dan berjiwa kewirausahaan.</p>
-            <p>3.membina dan mencerdaskan siswa yang menuju.</p> -->
-            </div>
-          </div>
-          <div class="vm-card">
-            <div class="num">03</div>
-            <div>
-              <h4>Fasilitas Unggulan</h4>
-              <p>Laboratorium komputer &amp; jaringan, Bank Mini praktik perbankan, bengkel sepeda motor injeksi, perpustakaan digital, serta ruang praktik simulasi kerja industri.</p>
-            </div>
-          </div>
-        </div>
+    <div class="profil-grid" id="profilGrid">
+  <div class="vm-cards">
+    <div class="vm-card">
+      <div class="num">01</div>
+      <div>
+        <h4>Visi Sekolah</h4>
+        <p>Terwujudnya lulusan yang cerdas,kompeten, terampil Dan Berakhlaq mulia </p>
       </div>
     </div>
-  </section>
+    <div class="vm-card">
+      <div class="num">02</div>
+      <div>
+        <h4>Misi Sekolah</h4>
+        <p>Menyiapkan siswa menjadi tenaga kerja yang terampil dan kompeten di dunia industri.</p>
+      </div>
+    </div>
+    <div class="vm-card">
+      <div class="num">03</div>
+      <div>
+        <h4>Fasilitas Unggulan</h4>
+        <p>Laboratorium komputer &amp; jaringan, Bank Mini praktik perbankan, bengkel sepeda motor injeksi, perpustakaan digital, serta ruang praktik simulasi kerja industri.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="profil-slider" id="profilSlider">
+    <div class="ps-inner">
+      <div class="ps-frame-corner tl"></div>
+      <div class="ps-frame-corner br"></div>
+
+      <div class="ps-track" id="psTrack">
+        <div class="ps-slide is-active" data-pos="0">
+          <img src="assets/images/shenhe.jpg" alt="Gedung Sekolah">
+        </div>
+        <div class="ps-slide" data-pos="1">
+          <img src="assets/images/c.jpg" alt="Suasana Belajar">
+        </div>
+        <div class="ps-slide" data-pos="2">
+          <img src="assets/images/my.jpg" alt="Laboratorium Sekolah">
+        </div>
+      </div>
+
+      <div class="ps-scrim"></div>
+
+      <div class="ps-caption">
+        <span class="ps-eyebrow" id="psEyebrow">Fasilitas Sekolah</span>
+        <h4 id="psTitle">Gedung Sekolah Modern</h4>
+        <p id="psDesc">Lingkungan belajar yang asri, nyaman, dan mendukung proses pembelajaran siswa.</p>
+      </div>
+
+      <button class="ps-arrow prev" id="psPrev" aria-label="Sebelumnya">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="ps-arrow next" id="psNext" aria-label="Berikutnya">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="ps-dots" id="psProgress">
+        <button class="ps-dot is-active" data-index="0" aria-label="Slide 1"></button>
+        <button class="ps-dot" data-index="1" aria-label="Slide 2"></button>
+        <button class="ps-dot" data-index="2" aria-label="Slide 3"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</section>
 
   <!-- Stuktur Organisasi Sekolah -->
   <section class="struktur" id="">
@@ -287,6 +321,7 @@ if (isset($_POST['cek_ppdb'])) {
     <div class="wrap">
       <div class="section-head on-dark">
         <span class="eyebrow">Program Keahlian</span>
+        
         <h2>3 Jurusan yang tersedia</h2>
         <p>Beragam program keahlian dirancang untuk membekali siswa dengan keterampilan sesuai bidang yang diminati dan kebutuhan dunia kerja.</p>
       </div>
@@ -572,18 +607,28 @@ if (isset($_POST['cek_ppdb'])) {
         </div>
 
       <?php else : ?>
-        <!-- 🔴 JIKA PPDB DITUTUP OLEH ADMIN (TAMPILKAN BANNER PEMBERITAHUAN) -->
-        <div style="text-align: center; background: #ffffff; padding: 60px 20px; border-radius: 24px; border: 1px solid rgba(14,56,43,0.1); max-width: 700px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+        <!-- 🔴 JIKA PPDB DITUTUP (HANYA BANNER PENGUMUMAN & TOMBOL DUA SEJAJAR) -->
+        <div style="text-align: center; background: #ffffff; padding: 60px 24px; border-radius: 24px; border: 1px solid rgba(14,56,43,0.1); max-width: 700px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
           <div style="font-size: 50px; color: #b87333; margin-bottom: 15px;">
             <i class="fa-solid fa-lock"></i>
           </div>
           <h2 style="color: #0e382b; margin-bottom: 12px; font-family: 'Fraunces', serif;">Pendaftaran PPDB Ditutup</h2>
-          <p style="color: #4a5d52; font-size: 15px; line-height: 1.6; max-width: 520px; margin: 0 auto 24px;">
-            Saat ini pendaftaran Peserta Didik Baru SMK Bhinneka Nusantara belum dibuka atau telah berakhir. Silakan pantau informasi resmi atau hubungi panitia kami.
+          <p style="color: #4a5d52; font-size: 15px; line-height: 1.6; max-width: 540px; margin: 0 auto 24px;">
+            Saat ini pendaftaran Peserta Didik Baru SMK Bhinneka Nusantara belum dibuka atau telah berakhir. Silakan pantau informasi resmi, unduh formulir, atau hubungi panitia kami.
           </p>
-          <a href="#kontak" class="ppdb-btn-submit" style="display: inline-flex; width: auto; text-decoration: none; padding: 12px 24px;">
-            <i class="fa-solid fa-phone"></i> Hubungi Panitia PPDB
-          </a>
+          
+          <!-- TOMBOL UNDUH FORMULIR & HUBUNGI PANITIA BERDAMPINGAN -->
+          <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <?php if (file_exists($file_pdf_path)): ?>
+              <a href="<?= $file_pdf_path ?>" download="Formulir_PPDB.pdf" class="ppdb-btn-submit" style="display: inline-flex; width: auto; text-decoration: none; padding: 12px 22px; font-size: 14px;">
+                <i class="fa-solid fa-file-arrow-down"></i> Unduh Formulir PDF
+              </a>
+            <?php endif; ?>
+
+            <a href="#kontak" class="ppdb-btn-submit" style="display: inline-flex; width: auto; text-decoration: none; padding: 12px 22px; font-size: 14px; background-color: #0e382b; color: #fff;">
+              <i class="fa-solid fa-phone"></i> Hubungi Panitia PPDB
+            </a>
+          </div>
         </div>
       <?php endif; ?>
 
