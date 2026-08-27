@@ -625,6 +625,380 @@ if (isset($_POST['cek_ppdb'])) {
     </div>
   </section>
 
+  <!-- Alur setelah pendaftaran -->
+
+  <!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alur Setelah Pendaftaran PPDB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  .ppdb-alur{
+    --pa-bg:#e9efe9;
+    --pa-shadow-light:#ffffff;
+    --pa-shadow-dark:#c3ccc3;
+    --pa-ink:#12261c;
+    --pa-ink-soft:#5c6b62;
+    --pa-green-900:#0c3d2a;
+    --pa-green-700:#146341;
+    --pa-green-500:#1f8a5c;
+    --pa-amber:#c98a1a;
+    --pa-gray-400:#8b968f;
+    --pa-radius:26px;
+
+    box-sizing:border-box;
+    background:var(--pa-bg);
+    padding:64px 24px 76px;
+    border-radius:32px;
+    font-family:'Inter', sans-serif;
+    color:var(--pa-ink);
+  }
+
+  .ppdb-alur *, .ppdb-alur *::before, .ppdb-alur *::after{
+    box-sizing:border-box;
+  }
+
+  .ppdb-alur .pa-wrap{
+    max-width:1240px;
+    margin:0 auto;
+  }
+
+  .ppdb-alur .pa-head{
+    text-align:center;
+    margin-bottom:56px;
+  }
+
+  .ppdb-alur .pa-eyebrow{
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--pa-green-700);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 18px;
+    border-radius:999px;
+    background:var(--pa-bg);
+    box-shadow: 6px 6px 14px var(--pa-shadow-dark), -6px -6px 14px var(--pa-shadow-light);
+    margin-bottom:22px;
+    opacity:0;
+    animation: pa-dropIn .6s ease forwards;
+  }
+
+  .ppdb-alur .pa-eyebrow .pa-dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--pa-amber);
+    animation: pa-blink 1.8s infinite ease-in-out;
+  }
+
+  .ppdb-alur .pa-title{
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-weight:800;
+    font-size:clamp(28px, 4vw, 42px);
+    color:var(--pa-green-900);
+    margin:0 0 14px;
+    letter-spacing:-0.01em;
+    opacity:0;
+    animation: pa-dropIn .7s ease forwards .08s;
+  }
+
+  .ppdb-alur .pa-head p{
+    font-size:16px;
+    color:var(--pa-ink-soft);
+    margin:0;
+    opacity:0;
+    animation: pa-dropIn .7s ease forwards .16s;
+  }
+
+  /* ===== Track ===== */
+  .ppdb-alur .pa-track{
+    position:relative;
+    display:flex;
+    align-items:stretch;
+    gap:0;
+  }
+
+  .ppdb-alur .pa-step{
+    flex:1;
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    opacity:0;
+    transform:translateY(26px);
+  }
+
+  .ppdb-alur .pa-step.pa-in-view{
+    animation: pa-riseIn .65s cubic-bezier(.2,.8,.2,1) forwards;
+  }
+
+  @keyframes pa-riseIn{
+    to{ opacity:1; transform:translateY(0); }
+  }
+  @keyframes pa-dropIn{
+    to{ opacity:1; transform:translateY(0); }
+  }
+  @keyframes pa-blink{
+    0%,100%{ opacity:1; transform:scale(1); }
+    50%{ opacity:.35; transform:scale(.8); }
+  }
+
+  .ppdb-alur .pa-connector{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:44px;
+    flex-shrink:0;
+    padding-top:110px;
+  }
+
+  .ppdb-alur .pa-connector svg{
+    width:22px;height:22px;
+    color:var(--pa-gray-400);
+    opacity:0;
+  }
+
+  .ppdb-alur .pa-connector.pa-in-view svg{
+    animation: pa-arrowPulse 1.4s ease forwards;
+  }
+
+  @keyframes pa-arrowPulse{
+    0%{ opacity:0; transform:translateX(-6px); }
+    60%{ opacity:1; transform:translateX(3px); }
+    100%{ opacity:1; transform:translateX(0); }
+  }
+
+  .ppdb-alur .pa-card{
+    position:relative;
+    background:var(--pa-bg);
+    border-radius:var(--pa-radius);
+    padding:34px 22px 32px;
+    height:100%;
+    text-align:center;
+    box-shadow: 9px 9px 20px var(--pa-shadow-dark), -9px -9px 20px var(--pa-shadow-light);
+    transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s cubic-bezier(.2,.8,.2,1);
+  }
+
+  .ppdb-alur .pa-card:hover{
+    transform: translateY(-8px);
+    box-shadow: 14px 14px 30px var(--pa-shadow-dark), -14px -14px 30px var(--pa-shadow-light);
+  }
+
+  .ppdb-alur .pa-card:hover .pa-icon-shell{
+    transform: scale(1.08) rotate(-4deg);
+    box-shadow: inset 3px 3px 7px var(--pa-shadow-dark), inset -3px -3px 7px var(--pa-shadow-light);
+  }
+
+  .ppdb-alur .pa-card:hover .pa-icon-shell svg{
+    color:var(--pa-green-500);
+  }
+
+  .ppdb-alur .pa-card:hover .pa-badge-num{
+    transform: translateX(-50%) scale(1.12);
+    box-shadow: 6px 6px 14px var(--pa-shadow-dark), -4px -4px 10px var(--pa-shadow-light);
+  }
+
+  .ppdb-alur .pa-card:hover .pa-card-title{
+    color:var(--pa-green-500);
+  }
+
+  .ppdb-alur .pa-badge-num{
+    position:absolute;
+    top:-16px;
+    left:50%;
+    transform:translateX(-50%);
+    width:34px;height:34px;
+    border-radius:50%;
+    background:linear-gradient(145deg, var(--pa-green-700), var(--pa-green-900));
+    color:#eafff3;
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow: 4px 4px 10px var(--pa-shadow-dark), -3px -3px 8px var(--pa-shadow-light);
+    transition: transform .35s ease, box-shadow .35s ease;
+  }
+
+  .ppdb-alur .pa-icon-shell{
+    width:78px;height:78px;
+    margin:0 auto 20px;
+    border-radius:50%;
+    background:var(--pa-bg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow: inset 5px 5px 10px var(--pa-shadow-dark), inset -5px -5px 10px var(--pa-shadow-light);
+    transition: transform .35s ease, box-shadow .35s ease;
+  }
+
+  .ppdb-alur .pa-icon-shell svg{
+    width:32px;height:32px;
+    stroke:var(--pa-green-700);
+    color:var(--pa-green-700);
+    transition: color .35s ease;
+  }
+
+  .ppdb-alur .pa-card-title{
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-size:16px;
+    font-weight:700;
+    color:var(--pa-green-900);
+    margin:0 0 10px;
+    transition: color .35s ease;
+  }
+
+  .ppdb-alur .pa-card p{
+    font-size:13px;
+    line-height:1.55;
+    color:var(--pa-ink-soft);
+    margin:0;
+    min-height:66px;
+  }
+
+  @media (max-width: 980px){
+    .ppdb-alur .pa-track{ flex-direction:column; gap:26px; }
+    .ppdb-alur .pa-connector{ width:auto; padding-top:0; transform:rotate(90deg); height:22px; }
+    .ppdb-alur .pa-card p{ min-height:0; }
+  }
+</style>
+</head>
+<body>
+
+<section class="ppdb-alur">
+<div class="pa-wrap">
+
+  <div class="pa-head">
+    <span class="pa-eyebrow"><span class="pa-dot"></span> Panduan Pendaftar</span>
+    <h2 class="pa-title">Alur Setelah Pendaftaran PPDB</h2>
+    <p>Ikuti setiap tahap setelah Anda melakukan pendaftaran PPDB di SMK Bhinus Nusantara.</p>
+  </div>
+
+  <div class="pa-track" id="pa-track">
+
+    <!-- 1 -->
+    <div class="pa-step">
+      <div class="pa-card">
+        <span class="pa-badge-num">1</span>
+        <div class="pa-icon-shell">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="m9 15 2 2 4-4"/></svg>
+        </div>
+        <h3 class="pa-card-title">Pendaftaran</h3>
+        <p>Isi formulir pendaftaran dan upload berkas yang dibutuhkan.</p>
+      </div>
+    </div>
+
+    <div class="pa-connector"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></div>
+
+    <!-- 2 -->
+    <div class="pa-step">
+      <div class="pa-card">
+        <span class="pa-badge-num">2</span>
+        <div class="pa-icon-shell">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3"/><path d="M9 12h6M9 16h6"/></svg>
+        </div>
+        <h3 class="pa-card-title">Bukti Pendaftaran</h3>
+        <p>Pendaftaran berhasil! Simpan nomor pendaftaran Anda sebagai bukti.</p>
+      </div>
+    </div>
+
+    <div class="pa-connector"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></div>
+
+    <!-- 3 -->
+    <div class="pa-step">
+      <div class="pa-card">
+        <span class="pa-badge-num">3</span>
+        <div class="pa-icon-shell">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3 class="pa-card-title">Verifikasi Berkas</h3>
+        <p>Panitia akan memverifikasi berkas pendaftaran Anda. Pantau status secara berkala.</p>
+      </div>
+    </div>
+
+    <div class="pa-connector"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></div>
+
+    <!-- 4 -->
+    <div class="pa-step">
+      <div class="pa-card">
+        <span class="pa-badge-num">4</span>
+        <div class="pa-icon-shell">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+        </div>
+        <h3 class="pa-card-title">Hasil Seleksi</h3>
+        <p>Pengumuman hasil seleksi dapat dilihat melalui menu cek status pendaftaran.</p>
+      </div>
+    </div>
+
+    <div class="pa-connector"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></div>
+
+    <!-- 5 -->
+    <div class="pa-step">
+      <div class="pa-card">
+        <span class="pa-badge-num">5</span>
+        <div class="pa-icon-shell">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/><path d="m9 21 2 2 4-4"/></svg>
+        </div>
+        <h3 class="pa-card-title">Daftar Ulang</h3>
+        <p>Bagi yang diterima, lakukan daftar ulang sesuai jadwal yang telah ditentukan.</p>
+      </div>
+    </div>
+
+    <div class="pa-connector"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></div>
+
+    <!-- 6 -->
+    <div class="pa-step">
+      <div class="pa-card">
+        <span class="pa-badge-num">6</span>
+        <div class="pa-icon-shell">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+        </div>
+        <h3 class="pa-card-title">Siswa Baru</h3>
+        <p>Selamat! Anda resmi menjadi siswa SMK Bhinus Nusantara. Siap belajar dan berprestasi.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<script>
+  (function(){
+    // Discipiled ke section ini saja, tidak menyentuh elemen lain di halaman
+    var root = document.querySelector('.ppdb-alur');
+    if(!root) return;
+
+    var items = root.querySelectorAll('.pa-step, .pa-connector');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var order = Array.prototype.indexOf.call(items, el);
+          el.style.animationDelay = (order * 90) + 'ms';
+          el.classList.add('pa-in-view');
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    items.forEach(function(el){ io.observe(el); });
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      root.querySelectorAll('.pa-step').forEach(function(s){ s.style.animation = 'none'; s.style.opacity = 1; s.style.transform = 'none'; });
+      root.querySelectorAll('.pa-connector svg').forEach(function(s){ s.style.animation = 'none'; s.style.opacity = 1; });
+    }
+  })();
+</script>
+
+</body>
+</html>
+
   <!-- ===== KONTAK ===== -->
   <section id="kontak" class="kontak-section">
     <div class="wrap">
