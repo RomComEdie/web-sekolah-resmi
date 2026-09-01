@@ -151,3 +151,30 @@ document.addEventListener('DOMContentLoaded', function () {
   render(0);
   start();
 });
+
+// After ppdb 
+
+ (function(){
+    var root = document.querySelector('.ppdb-alur');
+    if(!root) return;
+
+    var items = root.querySelectorAll('.pa-step, .pa-connector');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var order = Array.prototype.indexOf.call(items, el);
+          el.style.animationDelay = (order * 90) + 'ms';
+          el.classList.add('pa-in-view');
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    items.forEach(function(el){ io.observe(el); });
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      root.querySelectorAll('.pa-step').forEach(function(s){ s.style.animation = 'none'; s.style.opacity = 1; s.style.transform = 'none'; });
+      root.querySelectorAll('.pa-connector svg').forEach(function(s){ s.style.animation = 'none'; s.style.opacity = 1; });
+    }
+  })();

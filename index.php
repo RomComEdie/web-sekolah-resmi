@@ -82,7 +82,7 @@ if (isset($_POST['cek_ppdb'])) {
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/ppdb.css">
-  <link rel="icon" type="image/x-icon" href="assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/x-icon" href="assets/images/fa-smk.png">
 </head>
 
 <body>
@@ -627,7 +627,7 @@ if (isset($_POST['cek_ppdb'])) {
 
   <!-- Alur setelah pendaftaran -->
 
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -638,22 +638,21 @@ if (isset($_POST['cek_ppdb'])) {
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   .ppdb-alur{
-    --pa-bg:#e9efe9;
+    --pa-cream:#f8f6ee;
     --pa-shadow-light:#ffffff;
-    --pa-shadow-dark:#c3ccc3;
-    --pa-ink:#12261c;
-    --pa-ink-soft:#5c6b62;
-    --pa-green-900:#0c3d2a;
-    --pa-green-700:#146341;
-    --pa-green-500:#1f8a5c;
-    --pa-amber:#c98a1a;
-    --pa-gray-400:#8b968f;
+    --pa-shadow-dark:#dcd6c2;
+    --pa-ink:#3c3223;
+    --pa-ink-soft:#8a7f6a;
+    --pa-accent:#2f6f4f;
+    --pa-accent-light:#4f9b73;
+    --pa-accent-deep:#1f4d36;
+    --pa-gold:#c99a3f;
     --pa-radius:26px;
 
     box-sizing:border-box;
-    background:var(--pa-bg);
+    background:var(--pa-cream);
     padding:64px 24px 76px;
-    border-radius:32px;
+    border-radius:36px;
     font-family:'Inter', sans-serif;
     color:var(--pa-ink);
   }
@@ -678,13 +677,13 @@ if (isset($_POST['cek_ppdb'])) {
     font-weight:700;
     letter-spacing:0.18em;
     text-transform:uppercase;
-    color:var(--pa-green-700);
+    color:var(--pa-accent-deep);
     display:inline-flex;
     align-items:center;
     gap:10px;
     padding:8px 18px;
     border-radius:999px;
-    background:var(--pa-bg);
+    background:var(--pa-cream);
     box-shadow: 6px 6px 14px var(--pa-shadow-dark), -6px -6px 14px var(--pa-shadow-light);
     margin-bottom:22px;
     opacity:0;
@@ -693,7 +692,7 @@ if (isset($_POST['cek_ppdb'])) {
 
   .ppdb-alur .pa-eyebrow .pa-dot{
     width:7px;height:7px;border-radius:50%;
-    background:var(--pa-amber);
+    background:var(--pa-gold);
     animation: pa-blink 1.8s infinite ease-in-out;
   }
 
@@ -701,7 +700,7 @@ if (isset($_POST['cek_ppdb'])) {
     font-family:'Plus Jakarta Sans', sans-serif;
     font-weight:800;
     font-size:clamp(28px, 4vw, 42px);
-    color:var(--pa-green-900);
+    color:var(--pa-accent-deep);
     margin:0 0 14px;
     letter-spacing:-0.01em;
     opacity:0;
@@ -759,7 +758,7 @@ if (isset($_POST['cek_ppdb'])) {
 
   .ppdb-alur .pa-connector svg{
     width:22px;height:22px;
-    color:var(--pa-gray-400);
+    color:var(--pa-ink-soft);
     opacity:0;
   }
 
@@ -773,9 +772,10 @@ if (isset($_POST['cek_ppdb'])) {
     100%{ opacity:1; transform:translateX(0); }
   }
 
+  /* ===== Neumorphism card ===== */
   .ppdb-alur .pa-card{
     position:relative;
-    background:var(--pa-bg);
+    background:var(--pa-cream);
     border-radius:var(--pa-radius);
     padding:34px 22px 32px;
     height:100%;
@@ -795,7 +795,7 @@ if (isset($_POST['cek_ppdb'])) {
   }
 
   .ppdb-alur .pa-card:hover .pa-icon-shell svg{
-    color:var(--pa-green-500);
+    color:var(--pa-accent-light);
   }
 
   .ppdb-alur .pa-card:hover .pa-badge-num{
@@ -804,7 +804,7 @@ if (isset($_POST['cek_ppdb'])) {
   }
 
   .ppdb-alur .pa-card:hover .pa-card-title{
-    color:var(--pa-green-500);
+    color:var(--pa-accent-light);
   }
 
   .ppdb-alur .pa-badge-num{
@@ -814,8 +814,8 @@ if (isset($_POST['cek_ppdb'])) {
     transform:translateX(-50%);
     width:34px;height:34px;
     border-radius:50%;
-    background:linear-gradient(145deg, var(--pa-green-700), var(--pa-green-900));
-    color:#eafff3;
+    background:linear-gradient(145deg, var(--pa-accent-light), var(--pa-accent-deep));
+    color:#f5fff8;
     font-family:'Plus Jakarta Sans', sans-serif;
     font-weight:700;
     font-size:14px;
@@ -830,7 +830,7 @@ if (isset($_POST['cek_ppdb'])) {
     width:78px;height:78px;
     margin:0 auto 20px;
     border-radius:50%;
-    background:var(--pa-bg);
+    background:var(--pa-cream);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -840,8 +840,8 @@ if (isset($_POST['cek_ppdb'])) {
 
   .ppdb-alur .pa-icon-shell svg{
     width:32px;height:32px;
-    stroke:var(--pa-green-700);
-    color:var(--pa-green-700);
+    stroke:var(--pa-accent);
+    color:var(--pa-accent);
     transition: color .35s ease;
   }
 
@@ -849,7 +849,7 @@ if (isset($_POST['cek_ppdb'])) {
     font-family:'Plus Jakarta Sans', sans-serif;
     font-size:16px;
     font-weight:700;
-    color:var(--pa-green-900);
+    color:var(--pa-accent-deep);
     margin:0 0 10px;
     transition: color .35s ease;
   }
@@ -970,7 +970,6 @@ if (isset($_POST['cek_ppdb'])) {
 
 <script>
   (function(){
-    // Discipiled ke section ini saja, tidak menyentuh elemen lain di halaman
     var root = document.querySelector('.ppdb-alur');
     if(!root) return;
 
