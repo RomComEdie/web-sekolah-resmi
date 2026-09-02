@@ -272,7 +272,7 @@ if (isset($_POST['cek_ppdb'])) {
 
       <div class="ps-track" id="psTrack">
         <div class="ps-slide is-active" data-pos="0">
-          <img src="assets/images/shenhe.jpg" alt="Gedung Sekolah">
+          <img src="assets/images/smk.jpeg" alt="Gedung Sekolah">
         </div>
         <div class="ps-slide" data-pos="1">
           <img src="assets/images/c.jpg" alt="Suasana Belajar">
