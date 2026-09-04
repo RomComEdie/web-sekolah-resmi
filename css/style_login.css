@@ -1,0 +1,137 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    /* Latar belakang Forest Green terang/lembut */
+    background-color: #d4e0d7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Kartu Utama Neumorphism */
+.login-card {
+    background: #d4e0d7;
+    padding: 40px 30px;
+    border-radius: 30px;
+    width: 350px;
+    /* Bayangan gelap (hijau tua pudar) & terang (putih) */
+    box-shadow: 10px 10px 20px #b3bfb6, 
+                -10px -10px 20px #f5fff8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Lingkaran Avatar Atas */
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #d4e0d7;
+    box-shadow: inset 4px 4px 8px #b3bfb6, 
+                inset -4px -4px 8px #f5fff8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    color: #2e4a3b;
+    margin-bottom: 20px;
+}
+
+.title {
+    color: #1e3327; /* Forest Deep Dark untuk teks */
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    text-align: center;
+}
+
+.subtitle {
+    color: #4a6354;
+    font-size: 13px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 500;
+}
+
+form {
+    width: 100%;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+/* Input Cekung (Inset) */
+input {
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    background: #d4e0d7;
+    color: #1e3327;
+    font-size: 14px;
+    box-shadow: inset 4px 4px 8px #b3bfb6, 
+                inset -4px -4px 8px #f5fff8;
+    transition: all 0.3s ease;
+}
+
+input::placeholder {
+    color: #789081;
+}
+
+input:focus {
+    box-shadow: inset 6px 6px 10px #b3bfb6, 
+                inset -6px -6px 10px #f5fff8;
+}
+
+/* Tombol Timbul Akses Forest Green */
+button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 20px;
+    border: none;
+    background: #2d5a43; /* Hijau Hutan Solid */
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 6px 6px 12px #b3bfb6, 
+                -6px -6px 12px #f5fff8;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #234734;
+    transform: translateY(-2px);
+    box-shadow: 8px 8px 16px #b3bfb6, 
+                -8px -8px 16px #f5fff8;
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: 2px 2px 6px #b3bfb6, 
+                -2px -2px 6px #f5fff8;
+}
+
+/* Notifikasi Pesan Error Cekung */
+.error {
+    background: #d4e0d7;
+    color: #9b2c2c;
+    padding: 12px 15px;
+    border-radius: 15px;
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: inset 3px 3px 6px #b3bfb6, 
+                inset -3px -3px 6px #f5fff8;
+    font-weight: 600;
+}
